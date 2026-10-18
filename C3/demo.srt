@@ -1,0 +1,34 @@
+1
+00:00:00,000 --> 00:00:05,003
+C3 / CircuitCare live demonstration
+Real OpenAI responses | Fixed browser size | Continuous capture at normal speed
+
+2
+00:00:05,003 --> 00:00:22,328
+01 / Answers grounded in the business profile
+Published price and opening hours; general-question route is visible below.
+
+3
+00:00:22,328 --> 00:00:40,434
+02 / Repair intake with short-term memory
+The assistant collects missing details before saving a lead.
+
+4
+00:00:40,434 --> 00:01:07,186
+03 / A genuine model-requested tool call
+record_customer_interest returns a saved record ID in the open activity log.
+
+5
+00:01:07,186 --> 00:01:25,120
+04 / Customer feedback becomes a saved record
+The router selects feedback; record_feedback returns the saved record ID.
+
+6
+00:01:25,120 --> 00:01:46,490
+05 / Unknown questions are logged honestly
+The assistant logs the unpublished question and avoids inventing a quote or guarantee.
+
+7
+00:01:46,490 --> 00:01:54,504
+C3 / All three routes and both required tools demonstrated
+The open trace shows real tool observations. Optional reflection logs are retained with the recording evidence.

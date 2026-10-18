@@ -117,3 +117,7 @@ python -m pytest -q tests
 [Private course repository](https://github.com/lbrahimKhaled/eece503p-circuitcare-assignments) → `C4/`. Submit this folder independently of C3. Give the instructor access to the private repository. `reflection.md` and the notebook contain the complete reflection; there is no separate PDF requirement for C4 when the reflection is in the notebook. Hosting is not claimed.
 
 - [LangGraph Graph API](https://docs.langchain.com/oss/python/langgraph/graph-api)
+
+## Stable live video
+
+Watch `demo.mp4`; [chapter guide and authenticity checks](DEMO_GUIDE.md). The recording shows existing features with a constant frame and readable pauses. Actual browser inputs, replies, tool observations, and video checks are saved under `evidence/demo_*.json`.

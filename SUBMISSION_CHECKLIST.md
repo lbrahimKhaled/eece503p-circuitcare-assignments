@@ -61,7 +61,7 @@ Both folders also contain tests, schemas, interface styling, evidence, and a REA
 | GitHub repository with demonstration video | Private repository `C3/`, including `demo.mp4` |
 | API credential kept private | `.env` ignored, empty example, hidden-input launcher, archive scans |
 | Runs successfully | Executed notebook, live OpenAI evidence, passing tests and isolated ZIP checks |
-| Optional reflection bonus | Actual draft/review in `evidence/openai_reflection.json`; runtime original/revised log |
+| Optional reflection bonus | Current draft/review in `evidence/demo_reflection.json`; the review receives completed tool observations |
 | Optional Hugging Face hosting bonus | Not implemented or claimed; not required for the core assignment |
 
 The current SDK uses `OpenAI().chat.completions.create`, the supported modern spelling of the handout's older `openai.ChatCompletion` example.

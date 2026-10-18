@@ -1,3 +1,1 @@
-....................... [100%]
-23 passed in 0.53s
-Fresh ZIP extraction; offline tests, no API calls.
+23 offline tests passed after the reflection-grounding fix.

@@ -1,0 +1,32 @@
+[
+  {
+    "id": "de0007bc-9743-49d9-af89-5d08663883db",
+    "timestamp": "2026-10-18T15:02:46.801280+00:00",
+    "original_draft": "The diagnostic assessment is $15. We\u2019re open Saturdays from 10:00 a.m. to 2:00 p.m. (Beirut time).",
+    "revised_reply": "The diagnostic assessment is $15. We\u2019re open Saturdays from 10:00 a.m. to 2:00 p.m. (Beirut time)."
+  },
+  {
+    "id": "89eb2fab-2736-4c8a-92bd-a06d1e46c5f5",
+    "timestamp": "2026-10-18T15:03:04.790900+00:00",
+    "original_draft": "I can pass your repair request to the team for follow-up. I\u2019ll need your name and email address, and your permission to save those along with the issue (\u201cslow laptop\u201d). What name and email should I use, and do you consent to saving these details for follow-up?",
+    "revised_reply": "I can pass your repair request to the team for follow-up. Please share your name and email, and confirm that you consent to saving them with the issue (\u201cslow laptop\u201d) for follow-up."
+  },
+  {
+    "id": "558db933-6773-4d03-a891-a1cfdb93205b",
+    "timestamp": "2026-10-18T15:03:25.811944+00:00",
+    "original_draft": "Thanks, Alex\u2014your slow-laptop request has been saved for follow-up. This requests contact from the team; it doesn\u2019t book a repair.",
+    "revised_reply": "Thanks, Alex\u2014your slow-laptop request has been saved for follow-up. This requests contact from the team; it doesn\u2019t book a repair."
+  },
+  {
+    "id": "5ac702ce-6f2e-40e1-800b-9933c6248c78",
+    "timestamp": "2026-10-18T15:03:49.472420+00:00",
+    "original_draft": "Thanks for the suggestion. I\u2019ve recorded your feedback about using clearer language in repair progress updates.",
+    "revised_reply": "Thanks for the suggestion. I\u2019ve recorded your feedback about using clearer language in repair progress updates."
+  },
+  {
+    "id": "ef77bccd-b9a7-4ce0-afc1-d4eaa57bd366",
+    "timestamp": "2026-10-18T15:04:08.650396+00:00",
+    "original_draft": "Liquid-damage repair pricing isn\u2019t published, so the team will need to confirm it. Same-day completion isn\u2019t guaranteed; standard workshop assessment takes 1\u20132 business days, and completion dates aren\u2019t guaranteed.",
+    "revised_reply": "Liquid-damage repair pricing isn\u2019t published, so the team will need to confirm it. Same-day completion isn\u2019t guaranteed. Standard workshop assessment takes 1\u20132 business days, but completion dates aren\u2019t guaranteed."
+  }
+]

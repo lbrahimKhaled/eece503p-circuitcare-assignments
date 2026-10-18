@@ -1,0 +1,44 @@
+1
+00:00:00,000 --> 00:00:05,003
+C4 / CircuitCare live demonstration
+Real OpenAI responses | Fixed browser size | Continuous capture at normal speed
+
+2
+00:00:05,003 --> 00:00:33,599
+01 / Calculate the combined labour estimate
+The tool applies the $15 diagnostic credit: $60 subtotal becomes $45 labour.
+
+3
+00:00:33,599 --> 00:00:52,865
+02 / Safety triage through a dedicated tool
+Watch the decision, triage_device observation, and final guidance in the right panel.
+
+4
+00:00:52,865 --> 00:01:08,927
+03 / C3 feedback logging inside the advanced agent
+An unpublished business fact triggers log_unanswered, which calls the original C3 logger.
+
+5
+00:01:08,927 --> 00:01:14,750
+04 / Switch persona and matching model configuration
+Maya uses temperature 0.7 / top-p 0.95. Switching starts a fresh chat.
+
+6
+00:01:14,750 --> 00:01:32,460
+05 / Consent controls whether details are saved
+The assistant should not call record_interest when permission is refused.
+
+7
+00:01:32,460 --> 00:01:49,682
+06 / Verify the tool result before trusting a save
+This reply promises a save but has no tool observation yet; the record has not been saved.
+
+8
+00:01:49,682 --> 00:02:13,465
+07 / Clear permission produces a real saved record
+The consent adapter calls the original C3 lead function; the returned observation confirms saving.
+
+9
+00:02:13,465 --> 00:02:21,469
+C4 / Existing personas, tools, consent, and manual loop demonstrated
+The activity cards are actual model decisions and tool observations; no application features were added.

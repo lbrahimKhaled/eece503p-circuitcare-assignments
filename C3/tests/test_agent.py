@@ -46,3 +46,26 @@ def test_gradio_history_reaches_model(tmp_path):
     history=[{'role':'user','content':[{'type':'text','text':'My laptop is slow.'}]},{'role':'assistant','content':[{'type':'text','text':'What is your name?'}]}]
     BusinessAgent(client=client,log_dir=tmp_path).reply('Alex',history)
     assert any(t.get('content')=='My laptop is slow.' for t in client.messages)
+
+
+def test_reflection_receives_completed_tool_observation_and_consent(tmp_path):
+    class ReviewingClient:
+        def __init__(self):
+            self.turn=0
+        def complete(self,messages,**kwargs):
+            self.turn+=1
+            if self.turn==1:
+                return {'role':'assistant','tool_calls':[{'id':'lead-test','type':'function','function':{'name':'record_customer_interest','arguments':json.dumps({'email':'alex@example.com','name':'Alex Demo','message':'Slow laptop'})}}]}
+            if self.turn==2:
+                return {'role':'assistant','content':'Your follow-up request has been saved.'}
+            review=json.loads(messages[-1]['content'])
+            conversation=review['completed_conversation']
+            observations=[json.loads(m['content']) for m in conversation if m['role']=='tool']
+            assert observations[0]['status']=='saved'
+            assert observations[0]['id']==json.loads((tmp_path/'leads.jsonl').read_text())['id']
+            assert any(m.get('content')=='I consent to saving my name, email, and slow-laptop issue.' for m in conversation)
+            return {'role':'assistant','content':review['draft']}
+    result=BusinessAgent(client=ReviewingClient(),reflection=True,log_dir=tmp_path).reply('I consent to saving my name, email, and slow-laptop issue.')
+    assert 'saved' in result['reply']
+    review_log=json.loads((tmp_path/'reflection.jsonl').read_text())
+    assert review_log['original_draft']==review_log['revised_reply']==result['reply']

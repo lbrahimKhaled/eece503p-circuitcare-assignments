@@ -1,0 +1,62 @@
+{
+  "resolution": {
+    "width": 1320,
+    "height": 1000
+  },
+  "fps": 25,
+  "duration_seconds": 114.52,
+  "live_browser_turns": 5,
+  "continuous_normal_speed": true,
+  "mocked_application_responses": false,
+  "editing": "Only loading lead-in trimmed, one constant crop, and chapter captions outside the application. No cuts between actions, zooms, fabricated replies, or speed changes.",
+  "full_decode_passed": true,
+  "browser_geometry_samples": 1145,
+  "outer_scroll_events": 0,
+  "max_header_position_or_width_drift_px": 0,
+  "encoded_static_region_samples": 29,
+  "max_static_region_mean_rgb_difference_255": 0.430995,
+  "chapters": [
+    {
+      "start": 0.0,
+      "title": "C3 / CircuitCare live demonstration",
+      "detail": "Real OpenAI responses | Fixed browser size | Continuous capture at normal speed",
+      "end": 5.003
+    },
+    {
+      "start": 5.003,
+      "title": "01 / Answers grounded in the business profile",
+      "detail": "Published price and opening hours; general-question route is visible below.",
+      "end": 22.328
+    },
+    {
+      "start": 22.328,
+      "title": "02 / Repair intake with short-term memory",
+      "detail": "The assistant collects missing details before saving a lead.",
+      "end": 40.434
+    },
+    {
+      "start": 40.434,
+      "title": "03 / A genuine model-requested tool call",
+      "detail": "record_customer_interest returns a saved record ID in the open activity log.",
+      "end": 67.186
+    },
+    {
+      "start": 67.186,
+      "title": "04 / Customer feedback becomes a saved record",
+      "detail": "The router selects feedback; record_feedback returns the saved record ID.",
+      "end": 85.12
+    },
+    {
+      "start": 85.12,
+      "title": "05 / Unknown questions are logged honestly",
+      "detail": "The assistant logs the unpublished question and avoids inventing a quote or guarantee.",
+      "end": 106.49
+    },
+    {
+      "start": 106.49,
+      "title": "C3 / All three routes and both required tools demonstrated",
+      "detail": "The open trace shows real tool observations. Optional reflection logs are retained with the recording evidence.",
+      "end": 114.504
+    }
+  ]
+}

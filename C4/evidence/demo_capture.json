@@ -1,0 +1,74 @@
+{
+  "resolution": {
+    "width": 1320,
+    "height": 1200
+  },
+  "fps": 25,
+  "duration_seconds": 141.44,
+  "live_browser_turns": 6,
+  "continuous_normal_speed": true,
+  "mocked_application_responses": false,
+  "editing": "Only loading lead-in trimmed, one constant crop, and chapter captions outside the application. No cuts between actions, zooms, fabricated replies, or speed changes.",
+  "full_decode_passed": true,
+  "browser_geometry_samples": 1414,
+  "outer_scroll_events": 0,
+  "max_header_position_or_width_drift_px": 0,
+  "encoded_static_region_samples": 35,
+  "max_static_region_mean_rgb_difference_255": 0.255551,
+  "chapters": [
+    {
+      "start": 0.0,
+      "title": "C4 / CircuitCare live demonstration",
+      "detail": "Real OpenAI responses | Fixed browser size | Continuous capture at normal speed",
+      "end": 5.003
+    },
+    {
+      "start": 5.003,
+      "title": "01 / Calculate the combined labour estimate",
+      "detail": "The tool applies the $15 diagnostic credit: $60 subtotal becomes $45 labour.",
+      "end": 33.599
+    },
+    {
+      "start": 33.599,
+      "title": "02 / Safety triage through a dedicated tool",
+      "detail": "Watch the decision, triage_device observation, and final guidance in the right panel.",
+      "end": 52.865
+    },
+    {
+      "start": 52.865,
+      "title": "03 / C3 feedback logging inside the advanced agent",
+      "detail": "An unpublished business fact triggers log_unanswered, which calls the original C3 logger.",
+      "end": 68.927
+    },
+    {
+      "start": 68.927,
+      "title": "04 / Switch persona and matching model configuration",
+      "detail": "Maya uses temperature 0.7 / top-p 0.95. Switching starts a fresh chat.",
+      "end": 74.75
+    },
+    {
+      "start": 74.75,
+      "title": "05 / Consent controls whether details are saved",
+      "detail": "The assistant should not call record_interest when permission is refused.",
+      "end": 92.46
+    },
+    {
+      "start": 92.46,
+      "title": "06 / Verify the tool result before trusting a save",
+      "detail": "This reply promises a save but has no tool observation yet; the record has not been saved.",
+      "end": 109.682
+    },
+    {
+      "start": 109.682,
+      "title": "07 / Clear permission produces a real saved record",
+      "detail": "The consent adapter calls the original C3 lead function; the returned observation confirms saving.",
+      "end": 133.465
+    },
+    {
+      "start": 133.465,
+      "title": "C4 / Existing personas, tools, consent, and manual loop demonstrated",
+      "detail": "The activity cards are actual model decisions and tool observations; no application features were added.",
+      "end": 141.469
+    }
+  ]
+}

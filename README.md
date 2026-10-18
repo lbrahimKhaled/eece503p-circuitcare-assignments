@@ -24,7 +24,7 @@ python run.py
 
 Paste the API key at the hidden terminal prompt and press Enter. The launcher opens the interface in the browser and keeps the key only for this process. C3 uses local port 7860, C4 uses 7861. Stop with Ctrl+C. Windows activation is `.venv\Scripts\activate`. Read the assignment README for notebook instructions and the optional private `.env` method.
 
-The default model is OpenAI GPT-6 Luna. Each app shares a $0.05 / 64-call process budget; restarting begins a new budget. Tests and saved notebook evidence do not make paid calls. Combined OpenAI delivery testing and the explicit C3-to-C4 inheritance audit are conservatively estimated at $0.01534360 across both projects; precise usage estimates and limitations are in each evidence folder. Earlier DeepSeek logs remain historical.
+The default model is OpenAI GPT-6 Luna. Each app shares a $0.05 / 64-call process budget; restarting begins a new budget. Tests and saved notebook evidence do not make paid calls. Combined OpenAI delivery testing, the explicit C3-to-C4 inheritance audit, and live demonstration recording are conservatively estimated at $0.021898390 across both projects; precise usage estimates and limitations are in each evidence folder. Earlier DeepSeek logs remain historical.
 
 ## Assignment compliance
 
@@ -32,7 +32,7 @@ C4 now directly imports C3’s unchanged router, PDF/TXT loader, and original le
 
 ## Preview
 
-[C3 repair desk](C3/evidence/openai_interface.png) · [C4 agent workbench](C4/evidence/openai_expert_interface.png) · [C3 demo video](C3/demo.mp4)
+[C3 repair desk](C3/evidence/openai_interface.png) · [C4 agent workbench](C4/evidence/openai_expert_interface.png) · [C3 demo video](C3/demo.mp4) · [C4 demo video](C4/demo.mp4)
 
 ## Relationship to JafetAI
 

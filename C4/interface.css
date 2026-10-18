@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
 :root {color-scheme:light; --accent:#087f72; --ink:#142e32; --muted:#607477; --line:#dce6e3; --paper:#f4f7f3;}
 body,.gradio-container {background:var(--paper)!important; color:var(--ink)!important; font-family:'DM Sans',sans-serif!important;}
-.gradio-container {max-width:1440px!important; padding:0 38px 24px!important; margin:auto!important;}
+.gradio-container {width:100%!important;max-width:1440px!important;box-sizing:border-box!important;padding:0 38px 24px!important;margin:auto!important;}
+.main.app {width:100%!important;min-width:0!important;}
 h1,h2,h3,.brand,.hero-title {font-family:'Manrope',sans-serif!important;}
 #topnav {border-bottom:1px solid var(--line); margin-bottom:24px;}
 .topnav {display:flex; align-items:center; justify-content:space-between; padding:22px 0;gap:15px;}

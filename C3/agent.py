@@ -104,10 +104,10 @@ class BusinessAgent:
         except (ValueError, TypeError, ValidationError):
             return {'status':'error','message':'Unknown tool or invalid arguments; correct the input.'}
 
-    def reflect(self, draft, user_message):
+    def reflect(self, draft, user_message, completed_messages=()):
         result = self.client.complete([
-            {'role':'system','content':INSTRUCTIONS+'\n'+self.context+'\nReview the draft. Return only a corrected reply; do not claim a tool ran. Preserve accurate content.'},
-            {'role':'user','content':json.dumps({'customer':user_message,'draft':draft})}
+            {'role':'system','content':INSTRUCTIONS+'\n'+self.context+'\nReview the draft using the completed conversation and tool observations. Preserve confirmations supported by a saved tool result. Never invent or deny an action contrary to its observation. Return only the corrected customer-facing reply.'},
+            {'role':'user','content':json.dumps({'customer':user_message,'draft':draft,'completed_conversation':list(completed_messages)})}
         ], temperature=0.1)
         revised = result.get('content') or draft
         _log('reflection', {'original_draft':draft, 'revised_reply':revised}, self.log_dir)
@@ -132,7 +132,7 @@ class BusinessAgent:
             if not calls:
                 text = answer.get('content') or 'Please rephrase your question.'
                 if self.reflection:
-                    text = self.reflect(text, message)
+                    text = self.reflect(text, message, messages)
                 return {'reply':text, 'route':route, 'trace':trace}
             for call in calls:
                 observation = self.dispatch(call)

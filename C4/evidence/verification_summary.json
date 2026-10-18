@@ -14,8 +14,8 @@
   "repository_visibility": "PRIVATE",
   "repository_folder": "C4",
   "branch": "main",
-  "testing_cost_estimate": 0.0153436,
-  "cost_scope": "Combined OpenAI delivery testing and explicit C3-to-C4 inheritance audit across both assignments; conservative estimate, not an invoice. Earlier DeepSeek costs separate.",
+  "testing_cost_estimate": 0.02189839,
+  "cost_scope": "Combined OpenAI delivery, inheritance audit, and live video recording/rehearsals across both projects; conservative estimate, not an invoice. Earlier DeepSeek usage separate.",
   "framework": "LangGraph StateGraph",
   "manual_loop": true,
   "full_current_matrix_runs": 21,
@@ -41,5 +41,13 @@
   "current_live_extension_cases": 4,
   "current_matrix_after_explicit_inheritance": true,
   "reasoning_summary_notes": 6,
-  "direct_condition_notes": 0
+  "direct_condition_notes": 0,
+  "video": "demo.mp4",
+  "video_duration_seconds": 141.44,
+  "full_video_decode_passed": true,
+  "video_fixed_frame_verified": true,
+  "video_live_browser_turns": 6,
+  "demo_evidence": "evidence/demo_live.json",
+  "demo_capture_checks": "evidence/demo_capture.json",
+  "demo_recording_cost_estimate": 0.006554790000000002
 }

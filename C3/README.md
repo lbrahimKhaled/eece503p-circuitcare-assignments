@@ -77,3 +77,7 @@ python -m pytest -q tests
 ## Directory and extension audit
 
 This `C3/` folder is the `business_bot/` project root illustrated in the handout. Required relative file paths are preserved. The repository’s `SUBMISSION_CHECKLIST.md` maps every requirement to files and evidence. C4 now retains this exact `agent.py` and business data and directly calls the original router, PDF/TXT loader, and logging functions. The two folders remain independently runnable submissions.
+
+## Stable live video
+
+Watch `demo.mp4`; [chapter guide and authenticity checks](DEMO_GUIDE.md). The recording shows existing features with a constant frame and readable pauses. Actual browser inputs, replies, tool observations, and video checks are saved under `evidence/demo_*.json`.
