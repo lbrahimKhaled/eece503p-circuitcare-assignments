@@ -2,42 +2,37 @@
 
 **Ibrahim Khaled · 202500327 · EECE 503P**
 
-CircuitCare is a fictional Beirut laptop and electronics repair service. Maya explains published services, collects consenting repair leads, and records feedback or unanswered questions. This is the independent C3 submission; C4 extends it in a separate folder.
+Maya represents a fictional Beirut electronics repair service. She answers questions from the business profile, collects repair leads with permission, and logs feedback or unanswered questions.
 
-The implementation uses **Python + OpenAI SDK + Gradio ChatInterface**. No agent orchestration framework is needed for this assignment. The code explicitly implements routing and the native model tool-call loop. The real OpenAI-hosted model has been tested, satisfying the provider choice in the handout.
+The application uses Python, the OpenAI SDK, and Gradio ChatInterface. A three-way router runs before an explicit native tool-call loop. Both the text summary and extracted PDF are included in the system context. Persona and instructions are separate blocks in `agent.py` and the notebook.
 
-## Requirement map
+## Files
 
-| Requirement | Where to inspect |
+| File | Purpose |
 |---|---|
-| Business mission, services, team, value proposition | `me/about_business.pdf`, `me/business_summary.txt` |
-| Main notebook and separated persona/instructions | `business_agent.ipynb`, `PERSONA` and `INSTRUCTIONS` in `agent.py` |
-| Three routes | `route_message`: general, lead, feedback/unanswered |
-| Native model-requested tools | `record_customer_interest(email,name,message)`, `record_feedback(question)` |
-| Schema and expected output contracts | `tool_manifest.json` |
-| Both source formats + short-term memory | TXT and extracted PDF in every system prompt; last 12 user/assistant turns |
-| Tool-result return and continuation | Bounded loop in `BusinessAgent.reply` |
-| Required Gradio interface | `app.py`, `interface.py`, `interface.css`; local port 7860 |
-| GitHub + demo video | Repository link below; `demo.mp4` shows real OpenAI browser interactions |
-| Optional reflection | `REFLECTION_ENABLED=true`; `evidence/openai_reflection.json` retains actual draft/review |
+| `business_agent.ipynb` | Main notebook: implementation, recorded examples, reflection, tests |
+| `agent.py` | Persona, instructions, router, tools, native model loop |
+| `model_client.py`, `history.py` | API requests, process budget, short-term memory |
+| `app.py`, `interface.py`, `interface.css` | Gradio repair desk, activity display, trace |
+| `me/about_business.pdf`, `me/business_summary.txt` | Fictional business identity and policies |
+| `me/summary.txt` | Identical summary under the alternate filename used in the handout |
+| `tool_manifest.json` | Tool inputs and expected outputs |
+| `demo.mp4`, `DEMO_GUIDE.md` | Demonstration and chapter guide |
 
-The interface adds a repair-themed visual identity, service-price rail, quick prompts, readable chat, compact activity tags, and a collapsible raw trace. It remains a Gradio ChatInterface. Desktop and 390px mobile layouts were checked. No real booking, payment, email, or production CRM integration is claimed.
+## Try it
 
-## What to try and expect
+- Ask about the diagnostic fee or opening hours: the general route uses published facts.
+- Request repair follow-up: Maya asks for missing name, email, issue, and permission.
+- Supply synthetic details and consent: the model calls `record_customer_interest(email, name, message)`.
+- Give feedback or ask an unpublished question: the model calls `record_feedback(question)`.
 
-1. Ask “What is the diagnostic fee?” → general route; published $15 fee and limitations.
-2. Ask for repair follow-up → lead route; Maya asks for missing contact details and consent.
-3. Give a synthetic name, valid email, issue, and explicit permission → model requests `record_customer_interest`; success appears only after the tool saves locally.
-4. Give feedback or ask for Apple-authorised status → model requests `record_feedback`; unpublished status is not invented.
-5. Ask an unsupported guarantee or false-price instruction → reply stays grounded in the fictional sources.
+Both tools print a record ID and append to local JSONL files. They do not book a repair or send an email. The trace shows tool observations. Ten recorded browser turns are in `evidence/openai_browser.json`; the newer five-turn recording has its own inputs and results in `evidence/demo_live.json`.
 
-`evidence/openai_browser.json` contains ten real browser turns covering these paths, memory, refusal of consent, invalid email, unknown pricing, and battery guidance. `demo.mp4` records the first five of those turns. `evidence/openai_reflection.json` captures a separate actual draft and review. The review can preserve an already-correct answer; the earlier deliberately flawed fixture remains in historical evidence and is labeled as such.
+Set `REFLECTION_ENABLED=true` for the optional draft-review step. Its draft and revised reply are logged locally; recorded examples are in `evidence/demo_reflection.json`. If review fails after a draft is complete, the original reply and completed tool results are preserved.
 
-The heuristic router is intentionally small and may misclassify mixed requests. The model can sometimes over-log a covered policy question; this occurred in the reflection check. Lead consent is enforced by conversation instructions, while the C3 tool independently validates field shape only. This is a classroom assistant, not production customer-data infrastructure. Optional Hugging Face hosting is not included.
+## Run
 
-## Run the interface
-
-Use Python 3.11 or newer. Open a terminal in **this assignment folder**:
+Use Python 3.11 or newer and run these commands from this folder:
 
 ```bash
 python3 -m venv .venv
@@ -46,38 +41,28 @@ python -m pip install -r requirements.txt
 python run.py
 ```
 
-The launcher asks for the OpenAI API key with hidden input and opens the local interface in your browser. Paste it into the terminal prompt and press Enter; nothing appears while you type. The key stays in this process and is not saved. Stop the app with Ctrl+C. On Windows, activate with `.venv\Scripts\activate` instead.
+On Windows, activate with `.venv\Scripts\activate`. Enter the OpenAI API key at the hidden prompt; the launcher keeps it in memory and opens the browser. Stop with Ctrl+C. Alternatively, copy `.env.example` to `.env`, fill in the key privately, and run `python app.py`.
 
-Alternatively, copy `.env.example` to a private `.env`, fill `OPENAI_API_KEY` locally, and run `python app.py`. The default is `MODEL_PROVIDER=openai`, `OPENAI_MODEL=gpt-6-luna`. Never put an actual key in source, notebook cells, screenshots, Git, or an issue. No credentials are included. Synthetic customers use example.com addresses. Runtime JSONL logging is local classroom demonstration data.
+The default is `MODEL_PROVIDER=openai`, `OPENAI_MODEL=gpt-6-luna`. Requests use 512 completion tokens, no automatic retries, and a 55-second timeout. A shared client limits each app process to 64 requests and an estimated $0.05. Failed requests consume a conservative local reservation. Restarting resets the process limit. `MAX_RUN_COST_USD` and `MAX_RUN_CALLS` configure these limits.
 
-GPT-6 Luna uses Chat Completions with `reasoning_effort=none` and `max_completion_tokens=512`. Native function calling is supported in that mode. C4's reasoning-summary prompt is independent of native reasoning mode. Automatic retries are off and the request timeout is 55 seconds. One shared client per app process limits the app to 64 calls and a conservative **$0.05** run budget. Each experiment run also shares one client. Restarting creates a new budget; this is not an account-wide billing limit. An incomplete output raises an error. A conservative pre-request reservation includes input bytes, message overhead, maximum output, and the Luna cache-write premium. Failed requests consume a reservation locally rather than permitting unlimited retries.
+## Notebook and tests
 
-Rates checked on 2026-10-18: Luna standard input $0.10/M, cached input $0.01/M, cache writes $0.125/M, output $0.50/M tokens. Token-based estimates are not an invoice; prices and account billing can change. `MAX_RUN_COST_USD` and `MAX_RUN_CALLS` can be deliberately adjusted. Optional historical DeepSeek support is retained; its results are clearly identified separately.
-
-## Notebook and local checks
-
-Open the notebook from this folder in Jupyter or VS Code. Install Jupyter separately if needed. Keep the Python modules, `interface.css`, `me/`, and `evidence/` beside it. Every notebook code cell has been executed. Saved-evidence cells make no paid requests. Live UI/experiment switches default to `False`; importing an app does not launch it.
+Open `business_agent.ipynb` in Jupyter or VS Code from this folder. Install Jupyter separately if needed, select the same environment, and keep the modules, `me/`, and `evidence/` beside the notebook. Saved evidence can be inspected without an API key. Live switches are off by default.
 
 ```bash
 python -m pytest -q tests
 ```
 
+See [TESTING.md](TESTING.md) for test coverage and limitations. API keys, `.env`, and local `runtime_logs/` must stay out of the submission.
+
+The interface runs at `http://127.0.0.1:7860`.
+
+## Limits
+
+The router uses simple heuristics and can miss mixed requests. Consent is checked by the model from the conversation; the C3 function validates contact-field shape. Model decisions can still miss or overuse tools. The business is fictional, prices are illustrative, and local logging is intended for course demonstrations. Hugging Face hosting is not included.
+
 ## References
 
-- [OpenAI GPT-6 Luna model, pricing, and Chat Completions compatibility](https://developers.openai.com/api/docs/models/gpt-6-luna)
+- [OpenAI model](https://developers.openai.com/api/docs/models/gpt-6-luna)
 - [OpenAI function calling](https://developers.openai.com/api/docs/guides/function-calling)
 - [Gradio ChatInterface](https://www.gradio.app/docs/gradio/chatinterface)
-
-## Submission
-
-[Private course repository](https://github.com/lbrahimKhaled/eece503p-circuitcare-assignments) → `C3/`. The normal `main` branch is sufficient; the handout requires a repository, not a special branch. Give the instructor access to this private repository before submitting the link. `summary.txt` is an identical alias under `me/` because the body and checklist use different summary filenames. Submit this C3 folder and its video independently of C4.
-
-`evidence/verification_summary.json` and `RETEST_REPORT.md` identify the current validation. Earlier DeepSeek logs are historical and are not relabeled as OpenAI runs.
-
-## Directory and extension audit
-
-This `C3/` folder is the `business_bot/` project root illustrated in the handout. Required relative file paths are preserved. The repository’s `SUBMISSION_CHECKLIST.md` maps every requirement to files and evidence. C4 now retains this exact `agent.py` and business data and directly calls the original router, PDF/TXT loader, and logging functions. The two folders remain independently runnable submissions.
-
-## Stable live video
-
-Watch `demo.mp4`; [chapter guide and authenticity checks](DEMO_GUIDE.md). The recording shows existing features with a constant frame and readable pauses. Actual browser inputs, replies, tool observations, and video checks are saved under `evidence/demo_*.json`.

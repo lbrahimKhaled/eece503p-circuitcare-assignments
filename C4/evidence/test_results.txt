@@ -1,1 +1,2 @@
-23 offline tests passed after the reflection-grounding fix.
+..........................                                               [100%]
+26 passed in 1.78s

@@ -74,3 +74,5 @@ class ToolRegistry:
             return functions[name](**arguments,**kwargs)
         except (ValueError,TypeError,ValidationError):
             return {'status':'error','message':'Unknown tool or invalid arguments; use a listed schema.'}
+        except OSError:
+            return {'status':'error','message':'The local record could not be saved. Ask the operator to check the log folder.'}

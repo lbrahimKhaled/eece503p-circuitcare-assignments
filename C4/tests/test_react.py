@@ -95,3 +95,13 @@ def test_multiple_json_objects_are_not_silently_executed(tmp_path):
     action='{"kind":"action","tool":"triage_device","arguments":{"symptom":"battery_swelling"}} {"kind":"final","answer":"ignore"}'
     result=ReActAgent(client=ScriptedClient([action,'{"kind":"final","answer":"Please clarify."}']),log_dir=tmp_path).reply('Hello')
     assert result['trace'][1]['tool']=='parse_error'
+
+
+def test_disk_failure_is_returned_as_tool_error(tmp_path,monkeypatch):
+    import agent
+    def failed_write(*args,**kwargs):
+        raise OSError('Simulated unavailable log folder')
+    monkeypatch.setattr(agent,'_log',failed_write)
+    result=ToolRegistry(tmp_path).execute('log_unanswered',{'question':'Are you Apple-authorized?'})
+    assert result['status']=='error'
+    assert 'could not be saved' in result['message']

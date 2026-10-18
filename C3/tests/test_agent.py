@@ -69,3 +69,42 @@ def test_reflection_receives_completed_tool_observation_and_consent(tmp_path):
     assert 'saved' in result['reply']
     review_log=json.loads((tmp_path/'reflection.jsonl').read_text())
     assert review_log['original_draft']==review_log['revised_reply']==result['reply']
+
+
+def test_unoffered_lead_tool_cannot_save_on_general_route(tmp_path):
+    call={'id':'unexpected','type':'function','function':{'name':'record_customer_interest','arguments':json.dumps({'email':'alex@example.com','name':'Alex','message':'Laptop'})}}
+    client=ScriptedClient([{'role':'assistant','tool_calls':[call]},{'role':'assistant','content':'What would you like to know?'}])
+    result=BusinessAgent(client=client,log_dir=tmp_path).reply('What are your opening hours?')
+    assert result['route']=='general_question'
+    assert result['trace'][1]['observation']['status']=='error'
+    assert not list(tmp_path.glob('*.jsonl'))
+
+
+def test_disk_failure_returns_observation_instead_of_connection_error(tmp_path,monkeypatch):
+    import agent
+    def failed_write(*args,**kwargs):
+        raise OSError('Simulated unavailable log folder')
+    monkeypatch.setattr(agent,'_log',failed_write)
+    call={'id':'feedback','type':'function','function':{'name':'record_feedback','arguments':'{"question":"Please improve updates."}'}}
+    client=ScriptedClient([{'role':'assistant','tool_calls':[call]},{'role':'assistant','content':'The feedback could not be saved. Please contact the team.'}])
+    result=BusinessAgent(client=client,log_dir=tmp_path).reply('Feedback: please improve updates.')
+    assert result['trace'][1]['observation']['status']=='error'
+    assert 'could not be saved' in result['reply']
+
+
+def test_reflection_failure_preserves_completed_save(tmp_path):
+    class FailedReviewClient:
+        def __init__(self): self.calls=0
+        def complete(self,messages,**kwargs):
+            self.calls+=1
+            if self.calls==1:
+                return {'role':'assistant','tool_calls':[{'id':'saved-lead','type':'function','function':{'name':'record_customer_interest','arguments':json.dumps({'email':'alex@example.com','name':'Alex Demo','message':'Slow laptop'})}}]}
+            if self.calls==2:
+                return {'role':'assistant','content':'Your follow-up request has been saved.'}
+            raise RuntimeError('Per-client budget reached.')
+    client=FailedReviewClient()
+    result=BusinessAgent(client=client,reflection=True,log_dir=tmp_path).reply('Save my slow-laptop request. Alex Demo, alex@example.com. I consent.')
+    assert result['reply']=='Your follow-up request has been saved.'
+    assert len((tmp_path/'leads.jsonl').read_text().splitlines())==1
+    assert result['trace'][-1]['event']=='reflection_unavailable'
+    assert client.calls==3

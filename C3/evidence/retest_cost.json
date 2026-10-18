@@ -1,9 +1,0 @@
-{
-  "date": "2026-10-18",
-  "calls": 76,
-  "peak_cache_aware_cost_upper_usd": 0.039048,
-  "cap_usd": 0.05,
-  "observed_balance_change_usd": 0.02,
-  "provider_errors": 0,
-  "note": "Peak prices applied to the API-reported cache-hit and cache-miss tokens. Includes complete Pro matrix, browser checks, reflection, diagnostic attempts, and targeted parser regression. A local conservative reservation blocked one attempt before completion; no provider charge was made for the blocked request."
-}

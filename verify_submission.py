@@ -25,7 +25,7 @@ def verify():
     check('C3 required tool names',{'record_customer_interest','record_feedback'}<=functions)
     check('C3 separate persona/instructions','PERSONA =' in c3source and 'INSTRUCTIONS =' in c3source)
     check('C3 both business-source formats','PdfReader(' in c3source and 'business_summary.txt' in c3source)
-    check('C3 native tool-result loop',"'tool_call_id'" in c3source and 'self.dispatch(call)' in c3source)
+    check('C3 native tool-result loop',"'tool_call_id'" in c3source and 'self.dispatch(call,' in c3source)
     check('C3 required demo video',(c3/'demo.mp4').is_file() and (c3/'demo.mp4').stat().st_size>0)
     imported={name.name for node in ast.walk(ast.parse(c4source)) if isinstance(node,ast.ImportFrom) and node.module=='agent' for name in node.names}
     check('C4 reuses C3 source loader and router',{'load_business_context','route_message'}<=imported)
@@ -38,6 +38,17 @@ def verify():
         notebook=json.loads((folder/name).read_text());cells=[cell for cell in notebook['cells'] if cell['cell_type']=='code']
         check(folder.name+' executed notebook',bool(cells) and all(cell.get('execution_count') is not None for cell in cells) and not any(output['output_type']=='error' for cell in cells for output in cell.get('outputs',[])))
         check(folder.name+' Gradio ChatInterface','gr.ChatInterface(' in (folder/'app.py').read_text())
+        sources={''.join(cell['source']).strip() for cell in cells}
+        modules=['model_client.py','history.py','agent.py','app.py']
+        if folder==c4:
+            modules+=['tools.py','react_agent.py','experiments.py']
+        for module in modules:
+            source=(folder/module).read_text()
+            if module=='model_client.py':
+                source=source.replace('ROOT = Path(__file__).resolve().parent','ROOT = PROJECT')
+            if module in {'app.py','experiments.py'}:
+                source=source.split('\nif __name__')[0]
+            check(folder.name+' notebook matches '+module,source.strip() in sources)
     rows=json.loads((c4/'evidence/experiments.json').read_text())
     configurations={r['setup']['name'] for r in rows}
     check('C4 complete matrix',len(rows)==21 and len(configurations)==7 and len({r['case']['id'] for r in rows})==3 and not any(r.get('error_type') for r in rows))

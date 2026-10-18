@@ -1,9 +1,10 @@
 import argparse
-import os
 import csv
 import json
 import re
 import time
+from datetime import datetime, timezone
+from uuid import uuid4
 from dataclasses import asdict
 from model_client import ModelClient, ROOT
 from react_agent import ReActAgent, SETUPS
@@ -29,25 +30,31 @@ def run_experiments(model=None):
     client=ModelClient(model=model)
     rows=[]
     path=ROOT/'evidence/experiments.json'
+    checkpoint=ROOT/'runtime_logs/experiments'/f'{uuid4().hex}.json'
+    checkpoint.parent.mkdir(parents=True,exist_ok=True)
+    path.parent.mkdir(parents=True,exist_ok=True)
     for setup in SETUPS:
         for case in CASES:
             start=time.perf_counter(); before=len(client.usage)
             try:
                 result=ReActAgent(setup,client=client,log_dir=ROOT/'runtime_logs/experiments').reply(case['message'])
                 rating=score_result(case['id'],result)
-                row={'setup':asdict(setup),'case':case,**rating,'result':result,'seconds':round(time.perf_counter()-start,3),'usage':client.usage[before:],'provider':client.provider,'model':client.model,'recorded_date':'2026-10-18','prompt_method':'brief_reasoning_summary' if setup.planning else 'direct_action','public_rationale_count':sum(bool(t.get('decision',{}).get('note')) for t in result['trace'] if t.get('event')=='decision')}
+                row={'setup':asdict(setup),'case':case,**rating,'result':result,'seconds':round(time.perf_counter()-start,3),'usage':client.usage[before:],'provider':client.provider,'model':client.model,'recorded_date':datetime.now(timezone.utc).date().isoformat(),'prompt_method':'brief_reasoning_summary' if setup.planning else 'direct_action','public_rationale_count':sum(bool(t.get('decision',{}).get('note')) for t in result['trace'] if t.get('event')=='decision')}
             except Exception as error:
                 row={'setup':asdict(setup),'case':case,'error_type':type(error).__name__,'score':0,'maximum':4,'seconds':round(time.perf_counter()-start,3)}
             rows.append(row)
-            path.write_text(json.dumps(rows,indent=2))
+            checkpoint.write_text(json.dumps(rows,indent=2))
             print(f"{setup.name} / {case['id']}: {row['score']}/4",flush=True)
             if row.get('error_type'):
-                raise RuntimeError('Experiment stopped after an error; partial results saved. Inspect settings privately.')
-    with (ROOT/'evidence/experiment_scores.csv').open('w',newline='') as stream:
+                raise RuntimeError('Experiment stopped after an error; partial results are in runtime_logs/experiments. Submitted evidence was preserved.')
+    scores=checkpoint.with_suffix('.csv')
+    with scores.open('w',newline='') as stream:
         writer=csv.DictWriter(stream,fieldnames=['setup','case','score','maximum','seconds','calls','prompt_tokens','completion_tokens'])
         writer.writeheader()
         for r in rows:
             writer.writerow({'setup':r['setup']['name'],'case':r['case']['id'],'score':r['score'],'maximum':r['maximum'],'seconds':r['seconds'],'calls':len(r['usage']),'prompt_tokens':sum(u['prompt_tokens'] for u in r['usage']),'completion_tokens':sum(u['completion_tokens'] for u in r['usage'])})
+    checkpoint.replace(path)
+    scores.replace(ROOT/'evidence/experiment_scores.csv')
     return rows
 
 if __name__=='__main__':

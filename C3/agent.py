@@ -91,11 +91,11 @@ class BusinessAgent:
         self.log_dir = Path(log_dir)
         self.context = load_business_context()
 
-    def dispatch(self, call):
+    def dispatch(self, call, allowed_names=None):
         name = call['function']['name']
         schemas = {t['function']['name']: t['function']['parameters'] for t in TOOLS}
         try:
-            if name not in schemas:
+            if name not in schemas or (allowed_names is not None and name not in allowed_names):
                 raise ValueError('Unknown tool')
             args = json.loads(call['function']['arguments'])
             validate(args, schemas[name])
@@ -103,6 +103,8 @@ class BusinessAgent:
             return fn(**args, log_dir=self.log_dir)
         except (ValueError, TypeError, ValidationError):
             return {'status':'error','message':'Unknown tool or invalid arguments; correct the input.'}
+        except OSError:
+            return {'status':'error','message':'The local record could not be saved. Ask the operator to check the log folder.'}
 
     def reflect(self, draft, user_message, completed_messages=()):
         result = self.client.complete([
@@ -132,10 +134,13 @@ class BusinessAgent:
             if not calls:
                 text = answer.get('content') or 'Please rephrase your question.'
                 if self.reflection:
-                    text = self.reflect(text, message, messages)
+                    try:
+                        text = self.reflect(text, message, messages)
+                    except Exception:
+                        trace.append({'event':'reflection_unavailable','message':'Review did not complete; the original draft and tool results were preserved.'})
                 return {'reply':text, 'route':route, 'trace':trace}
             for call in calls:
-                observation = self.dispatch(call)
+                observation = self.dispatch(call, allowed_names={t['function']['name'] for t in tools})
                 trace.append({'event':'tool','name':call['function']['name'],'arguments':call['function']['arguments'],'observation':observation})
                 messages.append({'role':'tool','tool_call_id':call['id'],'content':json.dumps(observation)})
         return {'reply':'I could not complete this request within the tool limit. Please contact the team.', 'route':route, 'trace':trace}

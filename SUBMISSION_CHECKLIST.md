@@ -2,11 +2,11 @@
 
 **Ibrahim Khaled · 202500327 · EECE 503P**
 
-Checked against the complete supplied C3 and C4 handouts. The requirements below are from those handouts; extra files are supporting implementation/evidence, not additional instructor requirements. C3 and C4 remain separate submissions within the one private repository selected by the student.
+Checked against the complete supplied C3 and C4 handouts. The requirements below are from those handouts; extra files are supporting implementation/evidence, not additional instructor requirements. C3 and C4 are separate submissions in one private repository.
 
 ## Directory structure
 
-`C3/` is the project root called `business_bot/` in the C3 handout. That example root label is not a required Python package name. Required relative paths and filenames are preserved. The C4 handout specifies requirements, not a separate mandatory directory tree; C4 now retains the C3 baseline structure and adds the extension.
+`C3/` is the project root called `business_bot/` in the C3 handout. That example root label is not a required Python package name. Required relative paths and filenames are preserved. The C4 handout specifies requirements, not a separate mandatory directory tree; C4 retains the C3 baseline structure and adds the extension.
 
 ```text
 C3/
