@@ -1,0 +1,82 @@
+{
+  "message": "Does the $20 battery replacement labour include the battery, and can you guarantee same-day completion?",
+  "provider": "openai",
+  "model": "gpt-6-luna",
+  "result": {
+    "reply": "The $20 is for battery replacement labour only; the battery itself is not included. Same-day completion can\u2019t be guaranteed: completion dates and part availability aren\u2019t guaranteed, and standard workshop assessment takes 1\u20132 business days.",
+    "route": "general_question",
+    "trace": [
+      {
+        "event": "route",
+        "intent": "general_question"
+      },
+      {
+        "event": "tool",
+        "name": "record_feedback",
+        "arguments": "{\"question\":\"Does the $20 battery replacement labour include the battery, and can you guarantee same-day completion?\"}",
+        "observation": {
+          "status": "saved",
+          "id": "39b9bb43-94a4-4217-9827-4d0dd516b06b"
+        }
+      }
+    ]
+  },
+  "usage": [
+    {
+      "completion_tokens": 35,
+      "prompt_tokens": 1597,
+      "total_tokens": 1632,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 23,
+        "cached_tokens": 1571
+      }
+    },
+    {
+      "completion_tokens": 49,
+      "prompt_tokens": 1678,
+      "total_tokens": 1727,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 81,
+        "cached_tokens": 1594
+      }
+    },
+    {
+      "completion_tokens": 49,
+      "prompt_tokens": 1490,
+      "total_tokens": 1539,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 1487,
+        "cached_tokens": 0
+      }
+    }
+  ],
+  "recorded_date": "2026-10-18",
+  "review": {
+    "id": "3bc944d7-7293-4423-8438-ff018217a097",
+    "timestamp": "2026-10-18T14:07:22.004266+00:00",
+    "original_draft": "The $20 is for battery replacement labour only; the battery itself is not included. Same-day completion can\u2019t be guaranteed\u2014completion dates and part availability aren\u2019t guaranteed, and standard workshop assessment takes 1\u20132 business days.",
+    "revised_reply": "The $20 is for battery replacement labour only; the battery itself is not included. Same-day completion can\u2019t be guaranteed: completion dates and part availability aren\u2019t guaranteed, and standard workshop assessment takes 1\u20132 business days.",
+    "test_kind": "Actual OpenAI-generated draft and review via BusinessAgent.reply(reflection=True)"
+  }
+}

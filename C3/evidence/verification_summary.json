@@ -1,0 +1,29 @@
+{
+  "verified_date": "2026-10-18",
+  "provider": "openai",
+  "model": "gpt-6-luna",
+  "openai_hosted_backend_live_tested": true,
+  "offline_tests_passed": 12,
+  "notebook_executed": true,
+  "executed_code_cells": 12,
+  "live_browser_turns": 10,
+  "desktop_browser_checked": true,
+  "mobile_390px_no_overflow": true,
+  "credentials_included": false,
+  "repository": "https://github.com/lbrahimKhaled/eece503p-circuitcare-assignments",
+  "repository_visibility": "PRIVATE",
+  "repository_folder": "C3",
+  "branch": "main",
+  "testing_cost_estimate": 0.00874825,
+  "cost_scope": "Additional OpenAI work for both assignments, including failed-request reservation; earlier DeepSeek costs separate.",
+  "required_tools_requested_by_model": [
+    "record_customer_interest",
+    "record_feedback"
+  ],
+  "all_three_routes_observed": true,
+  "video": "demo.mp4",
+  "video_duration_seconds": 31.28,
+  "full_video_decode_passed": true,
+  "reflection_live_tested": true,
+  "reflection_evidence": "evidence/openai_reflection.json"
+}

@@ -1,0 +1,95 @@
+{
+  "setup": {
+    "name": "expert_full",
+    "persona": "expert",
+    "planning": true,
+    "few_shot": true,
+    "instruction_role": "system",
+    "dedicated_instructions": true,
+    "settings_override": null
+  },
+  "case": {
+    "id": "swollen_battery",
+    "message": "My laptop battery is visibly swollen. Is it safe to keep charging it? What should I do next?"
+  },
+  "score": 4,
+  "maximum": 4,
+  "checks": {
+    "used_triage": true,
+    "stop_charging": true,
+    "professional_help": true,
+    "no_disassembly": true
+  },
+  "result": {
+    "reply": "No, do not keep charging it. Stop using and charging the device if safe. Do not open, press, puncture, or heat the battery. Seek professional assessment. If smoke or fire appears, move away and contact local emergency services. We can assess it in the workshop; please back up data if possible before service.",
+    "trace": [
+      {
+        "event": "decision",
+        "step": 1,
+        "decision": {
+          "kind": "action",
+          "tool": "triage_device",
+          "arguments": {
+            "symptom": "battery_swelling"
+          }
+        }
+      },
+      {
+        "event": "observation",
+        "tool": "triage_device",
+        "arguments": {
+          "symptom": "battery_swelling"
+        },
+        "result": {
+          "symptom": "battery_swelling",
+          "urgency": "urgent",
+          "guidance": "Stop using and charging the device if safe. Do not open, press, puncture, or heat the battery. Seek professional assessment. If smoke or fire is present, move away and contact local emergency services.",
+          "diagnosis": "Not a remote diagnosis."
+        }
+      },
+      {
+        "event": "decision",
+        "step": 2,
+        "decision": {
+          "kind": "final",
+          "answer": "No, do not keep charging it. Stop using and charging the device if safe. Do not open, press, puncture, or heat the battery. Seek professional assessment. If smoke or fire appears, move away and contact local emergency services. We can assess it in the workshop; please back up data if possible before service."
+        }
+      }
+    ],
+    "steps": 2,
+    "setup": "expert_full"
+  },
+  "seconds": 3.79,
+  "usage": [
+    {
+      "completion_tokens": 24,
+      "prompt_tokens": 1548,
+      "total_tokens": 1572,
+      "completion_tokens_details": null,
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cache_write_tokens": null,
+        "cached_tokens": 1536
+      },
+      "prompt_cache_hit_tokens": 1536,
+      "prompt_cache_miss_tokens": 12
+    },
+    {
+      "completion_tokens": 73,
+      "prompt_tokens": 1663,
+      "total_tokens": 1736,
+      "completion_tokens_details": null,
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cache_write_tokens": null,
+        "cached_tokens": 1536
+      },
+      "prompt_cache_hit_tokens": 1536,
+      "prompt_cache_miss_tokens": 127
+    }
+  ],
+  "provider": "deepseek",
+  "model": "deepseek-v4-pro",
+  "recorded_date": "2026-10-18",
+  "retest_note": "Targeted rerun after adding single-trailing-brace recovery, actionable parse errors, and hazard fallback. Original complete matrix is preserved in pro_initial_retest.json."
+}

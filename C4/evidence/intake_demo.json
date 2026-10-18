@@ -1,0 +1,117 @@
+{
+  "message": "My name is Alex Demo. My email is alex@example.com. My laptop is slow, and I consent to saving my details for repair follow-up.",
+  "result": {
+    "reply": "Thanks, Alex \u2014 I've saved your details for follow-up on the slow laptop. While you wait, back up important files and check free storage and startup apps. A workshop assessment is needed before recommending hardware; the diagnostic is $15 and is credited toward approved repair labour. A human will confirm availability and timing. Anything else I can explain?",
+    "trace": [
+      {
+        "event": "decision",
+        "step": 1,
+        "decision": {
+          "kind": "action",
+          "tool": "triage_device",
+          "arguments": {
+            "symptom": "slow_device"
+          },
+          "note": "Get safe first steps for a slow laptop before recording the consented follow-up."
+        }
+      },
+      {
+        "event": "observation",
+        "tool": "triage_device",
+        "arguments": {
+          "symptom": "slow_device"
+        },
+        "result": {
+          "symptom": "slow_device",
+          "urgency": "routine",
+          "guidance": "Back up important data. Check storage space and startup apps; a workshop assessment is needed before recommending hardware.",
+          "diagnosis": "Many hardware and software causes are possible."
+        }
+      },
+      {
+        "event": "decision",
+        "step": 2,
+        "decision": {
+          "kind": "action",
+          "tool": "record_interest",
+          "arguments": {
+            "name": "Alex Demo",
+            "email": "alex@example.com",
+            "issue": "Laptop is slow",
+            "consent": true
+          },
+          "note": "All required fields and explicit consent are present."
+        }
+      },
+      {
+        "event": "observation",
+        "tool": "record_interest",
+        "arguments": {
+          "name": "Alex Demo",
+          "email": "alex@example.com",
+          "issue": "Laptop is slow",
+          "consent": true
+        },
+        "result": {
+          "status": "saved",
+          "id": "bf093dc2-9dab-4654-a013-da80b50c772e"
+        }
+      },
+      {
+        "event": "decision",
+        "step": 3,
+        "decision": {
+          "kind": "final",
+          "answer": "Thanks, Alex \u2014 I've saved your details for follow-up on the slow laptop. While you wait, back up important files and check free storage and startup apps. A workshop assessment is needed before recommending hardware; the diagnostic is $15 and is credited toward approved repair labour. A human will confirm availability and timing. Anything else I can explain?",
+          "note": "Follow-up saved; provided safe routine guidance and next step."
+        }
+      }
+    ],
+    "steps": 3,
+    "setup": "friendly_interactive"
+  },
+  "provider": "deepseek",
+  "model": "deepseek-flash",
+  "usage": [
+    {
+      "completion_tokens": 39,
+      "prompt_tokens": 1560,
+      "total_tokens": 1599,
+      "completion_tokens_details": null,
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cache_write_tokens": null,
+        "cached_tokens": 1280
+      },
+      "prompt_cache_hit_tokens": 1280,
+      "prompt_cache_miss_tokens": 280
+    },
+    {
+      "completion_tokens": 51,
+      "prompt_tokens": 1669,
+      "total_tokens": 1720,
+      "completion_tokens_details": null,
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cache_write_tokens": null,
+        "cached_tokens": 1408
+      },
+      "prompt_cache_hit_tokens": 1408,
+      "prompt_cache_miss_tokens": 261
+    },
+    {
+      "completion_tokens": 92,
+      "prompt_tokens": 1767,
+      "total_tokens": 1859,
+      "completion_tokens_details": null,
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cache_write_tokens": null,
+        "cached_tokens": 1536
+      },
+      "prompt_cache_hit_tokens": 1536,
+      "prompt_cache_miss_tokens": 231
+    }
+  ],
+  "recorded_date": "2026-10-18"
+}

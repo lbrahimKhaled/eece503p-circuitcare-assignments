@@ -1,0 +1,67 @@
+{
+  "raw": [
+    {
+      "content": "{\"kind\":\"action\",\"tool\":\"triage_device\",\"arguments\":{\"symptom\":\"battery_swelling\"},\"note\":\"Prioritize safety guidance for a swollen battery.\"}}",
+      "role": "assistant"
+    },
+    {
+      "content": "{\"kind\":\"action\",\"tool\":\"triage_device\",\"arguments\":{\"symptom\":\"battery_swelling\"}}",
+      "role": "assistant"
+    }
+  ],
+  "result": {
+    "reply": "Stop using and charging the device if safe. Do not open, press, puncture, or heat the battery. Seek professional assessment. If smoke or fire is present, move away and contact local emergency services. I could not complete the automated assessment; please request human assistance.",
+    "trace": [
+      {
+        "event": "decision",
+        "step": 1,
+        "decision": {
+          "kind": "invalid"
+        },
+        "invalid_output": "{\"kind\":\"action\",\"tool\":\"triage_device\",\"arguments\":{\"symptom\":\"battery_swelling\"},\"note\":\"Prioritize safety guidance for a swollen battery.\"}}"
+      },
+      {
+        "event": "observation",
+        "tool": "parse_error",
+        "arguments": {},
+        "result": {
+          "status": "error",
+          "message": "The previous output did not match the protocol. Return one object with kind=action, tool, arguments OR kind=final, answer.",
+          "action_example": {
+            "kind": "action",
+            "tool": "triage_device",
+            "arguments": {
+              "symptom": "battery_swelling"
+            }
+          },
+          "final_example": {
+            "kind": "final",
+            "answer": "Your customer-facing answer."
+          }
+        }
+      },
+      {
+        "event": "decision",
+        "step": 2,
+        "decision": {
+          "kind": "action",
+          "tool": "triage_device",
+          "arguments": {
+            "symptom": "battery_swelling"
+          }
+        }
+      },
+      {
+        "event": "limit",
+        "max_steps": 2
+      },
+      {
+        "event": "fallback",
+        "source": "deterministic hazard guidance after model failure",
+        "symptom": "battery_swelling"
+      }
+    ],
+    "steps": 2,
+    "setup": "expert_full"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "C3_CircuitCare": {
+    "zip_integrity": true,
+    "no_private_runtime_files": true,
+    "isolated_archive_tests": "........                                                                 [100%]\n8 passed in 0.38s",
+    "notebook_schema_and_syntax": true,
+    "tool_manifest_schemas_valid": true,
+    "pdf_text_and_alias_verified": true
+  },
+  "C4_CircuitCare_ReAct": {
+    "zip_integrity": true,
+    "no_private_runtime_files": true,
+    "isolated_archive_tests": "...........                                                              [100%]\n11 passed in 0.42s",
+    "notebook_schema_and_syntax": true,
+    "tool_manifest_schemas_valid": true
+  }
+}

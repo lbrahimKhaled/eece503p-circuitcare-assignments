@@ -1,0 +1,414 @@
+[
+  {
+    "message": "What is the labour total for diagnostic assessment, cleaning, and battery replacement, excluding all parts?",
+    "history": [],
+    "result": {
+      "reply": "The illustrative labour total is $45 after the $15 diagnostic credit. Parts are excluded. The estimate is subject to assessment, and work begins only after your approval.",
+      "trace": [
+        {
+          "event": "decision",
+          "step": 1,
+          "decision": {
+            "kind": "action",
+            "tool": "estimate_repair",
+            "arguments": {
+              "services": [
+                "diagnostic",
+                "cleaning",
+                "battery_replacement"
+              ]
+            },
+            "note": "I\u2019ll use the published estimate tool to total these services and apply the diagnostic credit; parts are excluded."
+          }
+        },
+        {
+          "event": "observation",
+          "tool": "estimate_repair",
+          "arguments": {
+            "services": [
+              "diagnostic",
+              "cleaning",
+              "battery_replacement"
+            ]
+          },
+          "result": {
+            "status": "ok",
+            "services": [
+              "diagnostic",
+              "cleaning",
+              "battery_replacement"
+            ],
+            "subtotal_usd": 60,
+            "diagnostic_credit_usd": 15,
+            "estimated_labour_usd": 45,
+            "parts_included": false,
+            "notice": "Illustrative labour estimate, subject to assessment and customer approval. Parts and licences excluded."
+          }
+        },
+        {
+          "event": "decision",
+          "step": 2,
+          "decision": {
+            "kind": "final",
+            "answer": "The illustrative labour total is $45 after the $15 diagnostic credit. Parts are excluded. The estimate is subject to assessment, and work begins only after your approval.",
+            "note": "The estimate tool reports a $60 subtotal less the $15 diagnostic credit, with parts excluded."
+          }
+        }
+      ],
+      "steps": 2,
+      "setup": "expert_interactive"
+    },
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "usage": [
+      {
+        "completion_tokens": 56,
+        "prompt_tokens": 1526,
+        "total_tokens": 1582,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 23,
+          "cached_tokens": 1500
+        }
+      },
+      {
+        "completion_tokens": 68,
+        "prompt_tokens": 1677,
+        "total_tokens": 1745,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 151,
+          "cached_tokens": 1523
+        }
+      }
+    ],
+    "recorded_date": "2026-10-18"
+  },
+  {
+    "message": "I am Alex Demo, alex@example.com. Please save my request about my slow laptop for follow-up. I consent to saving my details.",
+    "history": [],
+    "result": {
+      "reply": "Your follow-up request about your slow laptop has been saved. The team can follow up at alex@example.com.",
+      "trace": [
+        {
+          "event": "decision",
+          "step": 1,
+          "decision": {
+            "kind": "action",
+            "tool": "record_interest",
+            "arguments": {
+              "name": "Alex Demo",
+              "email": "alex@example.com",
+              "issue": "Slow laptop; requests follow-up",
+              "consent": true
+            },
+            "note": "You provided your name, email, issue, and explicit consent, so I\u2019m submitting the follow-up request."
+          }
+        },
+        {
+          "event": "observation",
+          "tool": "record_interest",
+          "arguments": {
+            "name": "Alex Demo",
+            "email": "alex@example.com",
+            "issue": "Slow laptop; requests follow-up",
+            "consent": true
+          },
+          "result": {
+            "status": "saved",
+            "id": "3f26e9e9-c0d3-406b-9f7f-da8dbd819172"
+          }
+        },
+        {
+          "event": "decision",
+          "step": 2,
+          "decision": {
+            "kind": "final",
+            "answer": "Your follow-up request about your slow laptop has been saved. The team can follow up at alex@example.com.",
+            "note": "The tool confirmed the request was saved; I\u2019m confirming that without implying a booking."
+          }
+        }
+      ],
+      "steps": 2,
+      "setup": "friendly_interactive"
+    },
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "usage": [
+      {
+        "completion_tokens": 68,
+        "prompt_tokens": 1533,
+        "total_tokens": 1601,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 32,
+          "cached_tokens": 1498
+        }
+      },
+      {
+        "completion_tokens": 55,
+        "prompt_tokens": 1652,
+        "total_tokens": 1707,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 119,
+          "cached_tokens": 1530
+        }
+      }
+    ],
+    "recorded_date": "2026-10-18"
+  },
+  {
+    "message": "I am Sam Sample, sam@example.com. My laptop is slow but do not save my details.",
+    "history": [],
+    "result": {
+      "reply": "Understood\u2014I won\u2019t save your contact details. A slow laptop can have several causes, so I can\u2019t diagnose it remotely. Back up important files before service; a workshop assessment typically takes 1\u20132 business days. You can walk in for intake during opening hours, but availability and appointments must be confirmed by a person.",
+      "trace": [
+        {
+          "event": "decision",
+          "step": 1,
+          "decision": {
+            "kind": "final",
+            "answer": "Understood\u2014I won\u2019t save your contact details. A slow laptop can have several causes, so I can\u2019t diagnose it remotely. Back up important files before service; a workshop assessment typically takes 1\u20132 business days. You can walk in for intake during opening hours, but availability and appointments must be confirmed by a person.",
+            "note": "You explicitly declined saving your details, so no follow-up was recorded. I\u2019m avoiding a remote diagnosis and sharing the published assessment timeframe and intake guidance."
+          }
+        }
+      ],
+      "steps": 1,
+      "setup": "expert_interactive"
+    },
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "usage": [
+      {
+        "completion_tokens": 112,
+        "prompt_tokens": 1527,
+        "total_tokens": 1639,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 24,
+          "cached_tokens": 1500
+        }
+      }
+    ],
+    "recorded_date": "2026-10-18"
+  },
+  {
+    "message": "My laptop battery is swollen. Can I keep charging it?",
+    "history": [
+      {
+        "role": "user",
+        "content": "I am Sam Sample, sam@example.com. My laptop is slow but do not save my details."
+      },
+      {
+        "role": "assistant",
+        "content": "Understood\u2014I won\u2019t save your contact details. A slow laptop can have several causes, so I can\u2019t diagnose it remotely. Back up important files before service; a workshop assessment typically takes 1\u20132 business days. You can walk in for intake during opening hours, but availability and appointments must be confirmed by a person."
+      }
+    ],
+    "result": {
+      "reply": "No. Stop charging and using the laptop if you can do so safely. Do not open, press, puncture, or heat the battery; seek professional assessment. If there is smoke or fire, move away and contact local emergency services.",
+      "trace": [
+        {
+          "event": "decision",
+          "step": 1,
+          "decision": {
+            "kind": "action",
+            "tool": "triage_device",
+            "arguments": {
+              "symptom": "battery_swelling"
+            },
+            "note": "A swollen battery is a safety hazard; I\u2019ll check the approved immediate precautions before advising."
+          }
+        },
+        {
+          "event": "observation",
+          "tool": "triage_device",
+          "arguments": {
+            "symptom": "battery_swelling"
+          },
+          "result": {
+            "symptom": "battery_swelling",
+            "urgency": "urgent",
+            "guidance": "Stop using and charging the device if safe. Do not open, press, puncture, or heat the battery. Seek professional assessment. If smoke or fire is present, move away and contact local emergency services.",
+            "diagnosis": "Not a remote diagnosis."
+          }
+        },
+        {
+          "event": "decision",
+          "step": 2,
+          "decision": {
+            "kind": "final",
+            "answer": "No. Stop charging and using the laptop if you can do so safely. Do not open, press, puncture, or heat the battery; seek professional assessment. If there is smoke or fire, move away and contact local emergency services.",
+            "note": "The triage guidance marks a swollen battery urgent and advises stopping use and charging; this is not a remote diagnosis."
+          }
+        }
+      ],
+      "steps": 2,
+      "setup": "expert_interactive"
+    },
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "usage": [
+      {
+        "completion_tokens": 48,
+        "prompt_tokens": 1615,
+        "total_tokens": 1663,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 88,
+          "cached_tokens": 1524
+        }
+      },
+      {
+        "completion_tokens": 87,
+        "prompt_tokens": 1753,
+        "total_tokens": 1840,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 138,
+          "cached_tokens": 1612
+        }
+      }
+    ],
+    "recorded_date": "2026-10-18"
+  },
+  {
+    "message": "What is the labour total for diagnostic assessment, cleaning, and battery replacement, excluding all parts?",
+    "history": [],
+    "result": {
+      "reply": "The illustrative labour total is $45 after the $15 diagnostic-fee credit. Parts are excluded; the estimate is subject to assessment and your approval before work begins.",
+      "trace": [
+        {
+          "event": "decision",
+          "step": 1,
+          "decision": {
+            "kind": "action",
+            "tool": "estimate_repair",
+            "arguments": {
+              "services": [
+                "diagnostic",
+                "cleaning",
+                "battery_replacement"
+              ]
+            },
+            "note": "I\u2019ll use the estimate tool to apply the diagnostic-fee credit to the requested labour services; parts are excluded."
+          }
+        },
+        {
+          "event": "observation",
+          "tool": "estimate_repair",
+          "arguments": {
+            "services": [
+              "diagnostic",
+              "cleaning",
+              "battery_replacement"
+            ]
+          },
+          "result": {
+            "status": "ok",
+            "services": [
+              "diagnostic",
+              "cleaning",
+              "battery_replacement"
+            ],
+            "subtotal_usd": 60,
+            "diagnostic_credit_usd": 15,
+            "estimated_labour_usd": 45,
+            "parts_included": false,
+            "notice": "Illustrative labour estimate, subject to assessment and customer approval. Parts and licences excluded."
+          }
+        },
+        {
+          "event": "decision",
+          "step": 2,
+          "decision": {
+            "kind": "final",
+            "answer": "The illustrative labour total is $45 after the $15 diagnostic-fee credit. Parts are excluded; the estimate is subject to assessment and your approval before work begins.",
+            "note": "The estimate tool reports $60 subtotal less a $15 diagnostic credit, with parts excluded."
+          }
+        }
+      ],
+      "steps": 2,
+      "setup": "expert_interactive"
+    },
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "usage": [
+      {
+        "completion_tokens": 58,
+        "prompt_tokens": 1526,
+        "total_tokens": 1584,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 1523
+        }
+      },
+      {
+        "completion_tokens": 67,
+        "prompt_tokens": 1679,
+        "total_tokens": 1746,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 153,
+          "cached_tokens": 1523
+        }
+      }
+    ],
+    "recorded_date": "2026-10-18"
+  }
+]

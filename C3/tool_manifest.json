@@ -1,0 +1,89 @@
+{
+  "format": "MCP-style tool contracts; local functions, not an MCP server",
+  "tools": [
+    {
+      "name": "record_customer_interest",
+      "description": "Save name, email, and repair notes only after explicit customer consent. Does not book a repair.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "email",
+          "name",
+          "message"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "enum": [
+              "saved",
+              "error"
+            ]
+          },
+          "id": {
+            "type": "string",
+            "description": "Present only when saved."
+          },
+          "message": {
+            "type": "string",
+            "description": "Present on validation errors."
+          }
+        },
+        "required": [
+          "status"
+        ]
+      }
+    },
+    {
+      "name": "record_feedback",
+      "description": "Log a complaint, suggestion, or original question whose answer is not published.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "question": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "question"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "enum": [
+              "saved",
+              "error"
+            ]
+          },
+          "id": {
+            "type": "string",
+            "description": "Present only when saved."
+          },
+          "message": {
+            "type": "string",
+            "description": "Present on validation errors."
+          }
+        },
+        "required": [
+          "status"
+        ]
+      }
+    }
+  ]
+}

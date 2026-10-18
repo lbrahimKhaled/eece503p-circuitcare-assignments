@@ -1,0 +1,261 @@
+{
+  "format": "MCP-style tool contracts; local functions, not an MCP server",
+  "tools": [
+    {
+      "name": "get_service",
+      "description": "Look up a published service and its price.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "service": {
+            "type": "string",
+            "enum": [
+              "diagnostic",
+              "cleaning",
+              "os_setup",
+              "ssd_installation",
+              "battery_replacement"
+            ]
+          }
+        },
+        "required": [
+          "service"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "found": {
+            "type": "boolean"
+          },
+          "service": {
+            "type": "string"
+          },
+          "price_usd": {
+            "type": "number",
+            "description": "Present for a listed service."
+          },
+          "description": {
+            "type": "string"
+          },
+          "available_service_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "limitations": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "found",
+          "service",
+          "available_service_ids",
+          "limitations"
+        ]
+      }
+    },
+    {
+      "name": "triage_device",
+      "description": "Get safe first steps; use for symptom or hazard questions.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "symptom": {
+            "type": "string",
+            "enum": [
+              "battery_swelling",
+              "liquid_exposure",
+              "overheating",
+              "slow_device",
+              "other"
+            ]
+          }
+        },
+        "required": [
+          "symptom"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "symptom": {
+            "type": "string"
+          },
+          "urgency": {
+            "type": "string"
+          },
+          "guidance": {
+            "type": "string"
+          },
+          "diagnosis": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "symptom",
+          "urgency",
+          "guidance",
+          "diagnosis"
+        ]
+      }
+    },
+    {
+      "name": "estimate_repair",
+      "description": "Compute combined labour and diagnostic credit; parts excluded.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "services": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "diagnostic",
+                "cleaning",
+                "os_setup",
+                "ssd_installation",
+                "battery_replacement"
+              ]
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "services"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "enum": [
+              "ok",
+              "error"
+            ]
+          },
+          "services": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "subtotal_usd": {
+            "type": "number"
+          },
+          "diagnostic_credit_usd": {
+            "type": "number"
+          },
+          "estimated_labour_usd": {
+            "type": "number"
+          },
+          "parts_included": {
+            "const": false
+          },
+          "notice": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      }
+    },
+    {
+      "name": "record_interest",
+      "description": "Save follow-up only when customer gives contact details and consent.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "issue": {
+            "type": "string"
+          },
+          "consent": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "name",
+          "email",
+          "issue",
+          "consent"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "enum": [
+              "saved",
+              "error"
+            ]
+          },
+          "id": {
+            "type": "string",
+            "description": "Present only when saved."
+          },
+          "message": {
+            "type": "string",
+            "description": "Present on validation errors."
+          }
+        },
+        "required": [
+          "status"
+        ]
+      }
+    },
+    {
+      "name": "log_unanswered",
+      "description": "Log a question when the requested fact is unpublished.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "question": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "question"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "enum": [
+              "saved",
+              "error"
+            ]
+          },
+          "id": {
+            "type": "string",
+            "description": "Present only when saved."
+          },
+          "message": {
+            "type": "string",
+            "description": "Present on validation errors."
+          }
+        },
+        "required": [
+          "status"
+        ]
+      }
+    }
+  ]
+}
