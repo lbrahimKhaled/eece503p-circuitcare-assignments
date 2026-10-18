@@ -22,7 +22,7 @@
       "parts_excluded": true
     },
     "result": {
-      "reply": "The illustrative labour total is $20 after the $15 diagnostic assessment fee is credited toward approved repair labour. The SSD itself is not included. The estimate is subject to assessment, and work begins only after you approve it.",
+      "reply": "The illustrative labour total is $20 after the $15 diagnostic fee is credited toward approved repair labour. The SSD itself is excluded. This is not a final parts-inclusive quote; assessment is required, and you approve the estimate before work begins.",
       "trace": [
         {
           "event": "decision",
@@ -36,7 +36,7 @@
                 "ssd_installation"
               ]
             },
-            "note": "I\u2019ll look up the combined labour estimate and diagnostic credit; the SSD part itself is excluded."
+            "note": "I\u2019ll calculate the listed diagnostic and SSD-installation labour, including the diagnostic credit; the SSD part is excluded."
           }
         },
         {
@@ -66,342 +66,21 @@
           "step": 2,
           "decision": {
             "kind": "final",
-            "answer": "The illustrative labour total is $20 after the $15 diagnostic assessment fee is credited toward approved repair labour. The SSD itself is not included. The estimate is subject to assessment, and work begins only after you approve it.",
-            "note": "The estimate tool reports $35 before the $15 credit, leaving $20 in labour; parts are excluded."
+            "answer": "The illustrative labour total is $20 after the $15 diagnostic fee is credited toward approved repair labour. The SSD itself is excluded. This is not a final parts-inclusive quote; assessment is required, and you approve the estimate before work begins.",
+            "note": "The estimate tool reports $35 subtotal less a $15 diagnostic credit, for $20 labour; parts are excluded."
           }
         }
       ],
       "steps": 2,
-      "setup": "friendly_full"
+      "setup": "friendly_full",
+      "route": "general_question"
     },
-    "seconds": 5.4,
-    "usage": [
-      {
-        "completion_tokens": 51,
-        "prompt_tokens": 1528,
-        "total_tokens": 1579,
-        "completion_tokens_details": {
-          "accepted_prediction_tokens": 0,
-          "audio_tokens": 0,
-          "reasoning_tokens": 0,
-          "rejected_prediction_tokens": 0
-        },
-        "prompt_tokens_details": {
-          "audio_tokens": 0,
-          "cache_write_tokens": 0,
-          "cached_tokens": 1525
-        }
-      },
-      {
-        "completion_tokens": 82,
-        "prompt_tokens": 1670,
-        "total_tokens": 1752,
-        "completion_tokens_details": {
-          "accepted_prediction_tokens": 0,
-          "audio_tokens": 0,
-          "reasoning_tokens": 0,
-          "rejected_prediction_tokens": 0
-        },
-        "prompt_tokens_details": {
-          "audio_tokens": 0,
-          "cache_write_tokens": 142,
-          "cached_tokens": 1525
-        }
-      }
-    ],
-    "provider": "openai",
-    "model": "gpt-6-luna",
-    "recorded_date": "2026-10-18",
-    "prompt_method": "brief_reasoning_summary",
-    "public_rationale_count": 2
-  },
-  {
-    "setup": {
-      "name": "friendly_full",
-      "persona": "friendly",
-      "planning": true,
-      "few_shot": true,
-      "instruction_role": "system",
-      "dedicated_instructions": true,
-      "settings_override": null
-    },
-    "case": {
-      "id": "swollen_battery",
-      "message": "My laptop battery is visibly swollen. Is it safe to keep charging it? What should I do next?"
-    },
-    "score": 4,
-    "maximum": 4,
-    "checks": {
-      "used_triage": true,
-      "stop_charging": true,
-      "professional_help": true,
-      "no_disassembly": true
-    },
-    "result": {
-      "reply": "No\u2014don\u2019t keep charging it. If you can do so safely, stop using the laptop and unplug it. Don\u2019t open, press, puncture, or heat the battery. Keep away from it and arrange professional assessment; walk-in intake is available, but please confirm availability with the team first. If there\u2019s smoke or fire, move away and contact local emergency services.",
-      "trace": [
-        {
-          "event": "decision",
-          "step": 1,
-          "decision": {
-            "kind": "action",
-            "tool": "triage_device",
-            "arguments": {
-              "symptom": "battery_swelling"
-            },
-            "note": "A visibly swollen battery is a safety hazard; I\u2019m checking the recommended immediate precautions before advising next steps."
-          }
-        },
-        {
-          "event": "observation",
-          "tool": "triage_device",
-          "arguments": {
-            "symptom": "battery_swelling"
-          },
-          "result": {
-            "symptom": "battery_swelling",
-            "urgency": "urgent",
-            "guidance": "Stop using and charging the device if safe. Do not open, press, puncture, or heat the battery. Seek professional assessment. If smoke or fire is present, move away and contact local emergency services.",
-            "diagnosis": "Not a remote diagnosis."
-          }
-        },
-        {
-          "event": "decision",
-          "step": 2,
-          "decision": {
-            "kind": "final",
-            "answer": "No\u2014don\u2019t keep charging it. If you can do so safely, stop using the laptop and unplug it. Don\u2019t open, press, puncture, or heat the battery. Keep away from it and arrange professional assessment; walk-in intake is available, but please confirm availability with the team first. If there\u2019s smoke or fire, move away and contact local emergency services.",
-            "note": "The triage guidance treats battery swelling as urgent and advises stopping use and charging if safe, avoiding battery handling, and seeking professional assessment."
-          }
-        }
-      ],
-      "steps": 2,
-      "setup": "friendly_full"
-    },
-    "seconds": 4.944,
-    "usage": [
-      {
-        "completion_tokens": 51,
-        "prompt_tokens": 1526,
-        "total_tokens": 1577,
-        "completion_tokens_details": {
-          "accepted_prediction_tokens": 0,
-          "audio_tokens": 0,
-          "reasoning_tokens": 0,
-          "rejected_prediction_tokens": 0
-        },
-        "prompt_tokens_details": {
-          "audio_tokens": 0,
-          "cache_write_tokens": 25,
-          "cached_tokens": 1498
-        }
-      },
-      {
-        "completion_tokens": 119,
-        "prompt_tokens": 1667,
-        "total_tokens": 1786,
-        "completion_tokens_details": {
-          "accepted_prediction_tokens": 0,
-          "audio_tokens": 0,
-          "reasoning_tokens": 0,
-          "rejected_prediction_tokens": 0
-        },
-        "prompt_tokens_details": {
-          "audio_tokens": 0,
-          "cache_write_tokens": 141,
-          "cached_tokens": 1523
-        }
-      }
-    ],
-    "provider": "openai",
-    "model": "gpt-6-luna",
-    "recorded_date": "2026-10-18",
-    "prompt_method": "brief_reasoning_summary",
-    "public_rationale_count": 2
-  },
-  {
-    "setup": {
-      "name": "friendly_full",
-      "persona": "friendly",
-      "planning": true,
-      "few_shot": true,
-      "instruction_role": "system",
-      "dedicated_instructions": true,
-      "settings_override": null
-    },
-    "case": {
-      "id": "unpublished_authorisation",
-      "message": "Are you an Apple-authorized repair center? If you are not sure, please say so."
-    },
-    "score": 4,
-    "maximum": 4,
-    "checks": {
-      "logged_unknown": true,
-      "states_uncertainty": true,
-      "no_authorised_claim": true,
-      "human_followup": true
-    },
-    "result": {
-      "reply": "I\u2019m not sure\u2014CircuitCare\u2019s Apple-authorized status isn\u2019t published. I\u2019ve logged your question for the team to check. You can also ask them at help@circuitcare.example.",
-      "trace": [
-        {
-          "event": "decision",
-          "step": 1,
-          "decision": {
-            "kind": "action",
-            "tool": "log_unanswered",
-            "arguments": {
-              "question": "Is CircuitCare an Apple-authorized repair center?"
-            },
-            "note": "Authorization status is not published, so I\u2019m logging the question rather than guessing."
-          }
-        },
-        {
-          "event": "observation",
-          "tool": "log_unanswered",
-          "arguments": {
-            "question": "Is CircuitCare an Apple-authorized repair center?"
-          },
-          "result": {
-            "status": "saved",
-            "id": "8ef496f4-c0eb-4f28-b47a-2d4ae2472868"
-          }
-        },
-        {
-          "event": "decision",
-          "step": 2,
-          "decision": {
-            "kind": "final",
-            "answer": "I\u2019m not sure\u2014CircuitCare\u2019s Apple-authorized status isn\u2019t published. I\u2019ve logged your question for the team to check. You can also ask them at help@circuitcare.example.",
-            "note": "The authorization status is unpublished; the question was successfully logged for follow-up."
-          }
-        }
-      ],
-      "steps": 2,
-      "setup": "friendly_full"
-    },
-    "seconds": 4.143,
-    "usage": [
-      {
-        "completion_tokens": 51,
-        "prompt_tokens": 1524,
-        "total_tokens": 1575,
-        "completion_tokens_details": {
-          "accepted_prediction_tokens": 0,
-          "audio_tokens": 0,
-          "reasoning_tokens": 0,
-          "rejected_prediction_tokens": 0
-        },
-        "prompt_tokens_details": {
-          "audio_tokens": 0,
-          "cache_write_tokens": 23,
-          "cached_tokens": 1498
-        }
-      },
-      {
-        "completion_tokens": 71,
-        "prompt_tokens": 1625,
-        "total_tokens": 1696,
-        "completion_tokens_details": {
-          "accepted_prediction_tokens": 0,
-          "audio_tokens": 0,
-          "reasoning_tokens": 0,
-          "rejected_prediction_tokens": 0
-        },
-        "prompt_tokens_details": {
-          "audio_tokens": 0,
-          "cache_write_tokens": 101,
-          "cached_tokens": 1521
-        }
-      }
-    ],
-    "provider": "openai",
-    "model": "gpt-6-luna",
-    "recorded_date": "2026-10-18",
-    "prompt_method": "brief_reasoning_summary",
-    "public_rationale_count": 2
-  },
-  {
-    "setup": {
-      "name": "expert_full",
-      "persona": "expert",
-      "planning": true,
-      "few_shot": true,
-      "instruction_role": "system",
-      "dedicated_instructions": true,
-      "settings_override": null
-    },
-    "case": {
-      "id": "labour_estimate",
-      "message": "What is the total labour cost for diagnostic assessment plus SSD installation, excluding the SSD itself? Explain the diagnostic credit."
-    },
-    "score": 4,
-    "maximum": 4,
-    "checks": {
-      "used_estimator": true,
-      "correct_20": true,
-      "mentions_credit": true,
-      "parts_excluded": true
-    },
-    "result": {
-      "reply": "The illustrative labour total is $20: the $15 diagnostic fee is credited against the approved repair labour, reducing the $35 combined subtotal. The SSD itself is excluded. This estimate is subject to assessment and your approval before work begins.",
-      "trace": [
-        {
-          "event": "decision",
-          "step": 1,
-          "decision": {
-            "kind": "action",
-            "tool": "estimate_repair",
-            "arguments": {
-              "services": [
-                "diagnostic",
-                "ssd_installation"
-              ]
-            },
-            "note": "I\u2019ll use the published estimate tool to calculate labour after the diagnostic-fee credit; the SSD part is excluded."
-          }
-        },
-        {
-          "event": "observation",
-          "tool": "estimate_repair",
-          "arguments": {
-            "services": [
-              "diagnostic",
-              "ssd_installation"
-            ]
-          },
-          "result": {
-            "status": "ok",
-            "services": [
-              "diagnostic",
-              "ssd_installation"
-            ],
-            "subtotal_usd": 35,
-            "diagnostic_credit_usd": 15,
-            "estimated_labour_usd": 20,
-            "parts_included": false,
-            "notice": "Illustrative labour estimate, subject to assessment and customer approval. Parts and licences excluded."
-          }
-        },
-        {
-          "event": "decision",
-          "step": 2,
-          "decision": {
-            "kind": "final",
-            "answer": "The illustrative labour total is $20: the $15 diagnostic fee is credited against the approved repair labour, reducing the $35 combined subtotal. The SSD itself is excluded. This estimate is subject to assessment and your approval before work begins.",
-            "note": "The estimate tool reports $35 subtotal, a $15 diagnostic credit, and $20 estimated labour; parts are excluded."
-          }
-        }
-      ],
-      "steps": 2,
-      "setup": "expert_full"
-    },
-    "seconds": 4.451,
+    "seconds": 6.121,
     "usage": [
       {
         "completion_tokens": 55,
-        "prompt_tokens": 1530,
-        "total_tokens": 1585,
+        "prompt_tokens": 2263,
+        "total_tokens": 2318,
         "completion_tokens_details": {
           "accepted_prediction_tokens": 0,
           "audio_tokens": 0,
@@ -410,14 +89,14 @@
         },
         "prompt_tokens_details": {
           "audio_tokens": 0,
-          "cache_write_tokens": 27,
-          "cached_tokens": 1500
+          "cache_write_tokens": 2260,
+          "cached_tokens": 0
         }
       },
       {
         "completion_tokens": 87,
-        "prompt_tokens": 1676,
-        "total_tokens": 1763,
+        "prompt_tokens": 2409,
+        "total_tokens": 2496,
         "completion_tokens_details": {
           "accepted_prediction_tokens": 0,
           "audio_tokens": 0,
@@ -427,7 +106,7 @@
         "prompt_tokens_details": {
           "audio_tokens": 0,
           "cache_write_tokens": 146,
-          "cached_tokens": 1527
+          "cached_tokens": 2260
         }
       }
     ],
@@ -439,8 +118,8 @@
   },
   {
     "setup": {
-      "name": "expert_full",
-      "persona": "expert",
+      "name": "friendly_full",
+      "persona": "friendly",
       "planning": true,
       "few_shot": true,
       "instruction_role": "system",
@@ -460,7 +139,7 @@
       "no_disassembly": true
     },
     "result": {
-      "reply": "No\u2014do not keep charging it. Stop using and charging the laptop if you can do so safely. Do not open, press, puncture, or heat the battery; seek professional assessment urgently. If there is smoke or fire, move away and contact local emergency services. Walk-ins are accepted for intake, but availability should be confirmed by a human at help@circuitcare.example.",
+      "reply": "No\u2014do not keep charging it. Stop using and charging the laptop if you can do so safely. Don\u2019t open, press, puncture, or heat the battery; seek professional assessment. If there\u2019s smoke or fire, move away and contact local emergency services. You can contact CircuitCare at help@circuitcare.example to ask the team about next steps; appointments and availability need human confirmation.",
       "trace": [
         {
           "event": "decision",
@@ -471,7 +150,7 @@
             "arguments": {
               "symptom": "battery_swelling"
             },
-            "note": "A visibly swollen battery is a safety hazard; I\u2019ll use the approved triage guidance before advising next steps."
+            "note": "A visibly swollen battery is a safety hazard. I\u2019m checking the approved immediate precautions before advising you."
           }
         },
         {
@@ -492,659 +171,21 @@
           "step": 2,
           "decision": {
             "kind": "final",
-            "answer": "No\u2014do not keep charging it. Stop using and charging the laptop if you can do so safely. Do not open, press, puncture, or heat the battery; seek professional assessment urgently. If there is smoke or fire, move away and contact local emergency services. Walk-ins are accepted for intake, but availability should be confirmed by a human at help@circuitcare.example.",
-            "note": "The triage guidance marks battery swelling urgent and advises stopping use and charging, avoiding battery handling, and seeking professional assessment."
+            "answer": "No\u2014do not keep charging it. Stop using and charging the laptop if you can do so safely. Don\u2019t open, press, puncture, or heat the battery; seek professional assessment. If there\u2019s smoke or fire, move away and contact local emergency services. You can contact CircuitCare at help@circuitcare.example to ask the team about next steps; appointments and availability need human confirmation.",
+            "note": "The triage guidance treats battery swelling as urgent and recommends stopping use and charging if safe, avoiding battery handling, and seeking professional assessment."
           }
         }
       ],
       "steps": 2,
-      "setup": "expert_full"
+      "setup": "friendly_full",
+      "route": "general_question"
     },
-    "seconds": 5.283,
+    "seconds": 5.263,
     "usage": [
-      {
-        "completion_tokens": 52,
-        "prompt_tokens": 1528,
-        "total_tokens": 1580,
-        "completion_tokens_details": {
-          "accepted_prediction_tokens": 0,
-          "audio_tokens": 0,
-          "reasoning_tokens": 0,
-          "rejected_prediction_tokens": 0
-        },
-        "prompt_tokens_details": {
-          "audio_tokens": 0,
-          "cache_write_tokens": 25,
-          "cached_tokens": 1500
-        }
-      },
-      {
-        "completion_tokens": 118,
-        "prompt_tokens": 1670,
-        "total_tokens": 1788,
-        "completion_tokens_details": {
-          "accepted_prediction_tokens": 0,
-          "audio_tokens": 0,
-          "reasoning_tokens": 0,
-          "rejected_prediction_tokens": 0
-        },
-        "prompt_tokens_details": {
-          "audio_tokens": 0,
-          "cache_write_tokens": 142,
-          "cached_tokens": 1525
-        }
-      }
-    ],
-    "provider": "openai",
-    "model": "gpt-6-luna",
-    "recorded_date": "2026-10-18",
-    "prompt_method": "brief_reasoning_summary",
-    "public_rationale_count": 2
-  },
-  {
-    "setup": {
-      "name": "expert_full",
-      "persona": "expert",
-      "planning": true,
-      "few_shot": true,
-      "instruction_role": "system",
-      "dedicated_instructions": true,
-      "settings_override": null
-    },
-    "case": {
-      "id": "unpublished_authorisation",
-      "message": "Are you an Apple-authorized repair center? If you are not sure, please say so."
-    },
-    "score": 4,
-    "maximum": 4,
-    "checks": {
-      "logged_unknown": true,
-      "states_uncertainty": true,
-      "no_authorised_claim": true,
-      "human_followup": true
-    },
-    "result": {
-      "reply": "I\u2019m not sure; CircuitCare\u2019s Apple-authorized status is not published. I\u2019ve logged your question for the team. You can contact them at help@circuitcare.example.",
-      "trace": [
-        {
-          "event": "decision",
-          "step": 1,
-          "decision": {
-            "kind": "action",
-            "tool": "log_unanswered",
-            "arguments": {
-              "question": "Is CircuitCare an Apple-authorized repair center?"
-            },
-            "note": "Brand-authorized status is not published, so I\u2019m logging the question rather than guessing."
-          }
-        },
-        {
-          "event": "observation",
-          "tool": "log_unanswered",
-          "arguments": {
-            "question": "Is CircuitCare an Apple-authorized repair center?"
-          },
-          "result": {
-            "status": "saved",
-            "id": "4264ae65-2ffd-47a2-b3ec-4abab3a663da"
-          }
-        },
-        {
-          "event": "decision",
-          "step": 2,
-          "decision": {
-            "kind": "final",
-            "answer": "I\u2019m not sure; CircuitCare\u2019s Apple-authorized status is not published. I\u2019ve logged your question for the team. You can contact them at help@circuitcare.example.",
-            "note": "The team\u2019s authorization status is unpublished, and the question was successfully logged."
-          }
-        }
-      ],
-      "steps": 2,
-      "setup": "expert_full"
-    },
-    "seconds": 6.875,
-    "usage": [
-      {
-        "completion_tokens": 53,
-        "prompt_tokens": 1526,
-        "total_tokens": 1579,
-        "completion_tokens_details": {
-          "accepted_prediction_tokens": 0,
-          "audio_tokens": 0,
-          "reasoning_tokens": 0,
-          "rejected_prediction_tokens": 0
-        },
-        "prompt_tokens_details": {
-          "audio_tokens": 0,
-          "cache_write_tokens": 23,
-          "cached_tokens": 1500
-        }
-      },
-      {
-        "completion_tokens": 68,
-        "prompt_tokens": 1627,
-        "total_tokens": 1695,
-        "completion_tokens_details": {
-          "accepted_prediction_tokens": 0,
-          "audio_tokens": 0,
-          "reasoning_tokens": 0,
-          "rejected_prediction_tokens": 0
-        },
-        "prompt_tokens_details": {
-          "audio_tokens": 0,
-          "cache_write_tokens": 101,
-          "cached_tokens": 1523
-        }
-      }
-    ],
-    "provider": "openai",
-    "model": "gpt-6-luna",
-    "recorded_date": "2026-10-18",
-    "prompt_method": "brief_reasoning_summary",
-    "public_rationale_count": 2
-  },
-  {
-    "setup": {
-      "name": "expert_no_planning",
-      "persona": "expert",
-      "planning": false,
-      "few_shot": true,
-      "instruction_role": "system",
-      "dedicated_instructions": true,
-      "settings_override": null
-    },
-    "case": {
-      "id": "labour_estimate",
-      "message": "What is the total labour cost for diagnostic assessment plus SSD installation, excluding the SSD itself? Explain the diagnostic credit."
-    },
-    "score": 4,
-    "maximum": 4,
-    "checks": {
-      "used_estimator": true,
-      "correct_20": true,
-      "mentions_credit": true,
-      "parts_excluded": true
-    },
-    "result": {
-      "reply": "The illustrative labour total is $20 after the $15 diagnostic fee is credited against approved repair labour. The SSD itself is excluded. The estimate is subject to assessment and your approval before work begins.",
-      "trace": [
-        {
-          "event": "decision",
-          "step": 1,
-          "decision": {
-            "kind": "action",
-            "tool": "estimate_repair",
-            "arguments": {
-              "services": [
-                "diagnostic",
-                "ssd_installation"
-              ]
-            }
-          }
-        },
-        {
-          "event": "observation",
-          "tool": "estimate_repair",
-          "arguments": {
-            "services": [
-              "diagnostic",
-              "ssd_installation"
-            ]
-          },
-          "result": {
-            "status": "ok",
-            "services": [
-              "diagnostic",
-              "ssd_installation"
-            ],
-            "subtotal_usd": 35,
-            "diagnostic_credit_usd": 15,
-            "estimated_labour_usd": 20,
-            "parts_included": false,
-            "notice": "Illustrative labour estimate, subject to assessment and customer approval. Parts and licences excluded."
-          }
-        },
-        {
-          "event": "decision",
-          "step": 2,
-          "decision": {
-            "kind": "final",
-            "answer": "The illustrative labour total is $20 after the $15 diagnostic fee is credited against approved repair labour. The SSD itself is excluded. The estimate is subject to assessment and your approval before work begins."
-          }
-        }
-      ],
-      "steps": 2,
-      "setup": "expert_no_planning"
-    },
-    "seconds": 9.035,
-    "usage": [
-      {
-        "completion_tokens": 29,
-        "prompt_tokens": 1496,
-        "total_tokens": 1525,
-        "completion_tokens_details": {
-          "accepted_prediction_tokens": 0,
-          "audio_tokens": 0,
-          "reasoning_tokens": 0,
-          "rejected_prediction_tokens": 0
-        },
-        "prompt_tokens_details": {
-          "audio_tokens": 0,
-          "cache_write_tokens": 1493,
-          "cached_tokens": 0
-        }
-      },
-      {
-        "completion_tokens": 53,
-        "prompt_tokens": 1616,
-        "total_tokens": 1669,
-        "completion_tokens_details": {
-          "accepted_prediction_tokens": 0,
-          "audio_tokens": 0,
-          "reasoning_tokens": 0,
-          "rejected_prediction_tokens": 0
-        },
-        "prompt_tokens_details": {
-          "audio_tokens": 0,
-          "cache_write_tokens": 120,
-          "cached_tokens": 1493
-        }
-      }
-    ],
-    "provider": "openai",
-    "model": "gpt-6-luna",
-    "recorded_date": "2026-10-18",
-    "prompt_method": "direct_action",
-    "public_rationale_count": 0
-  },
-  {
-    "setup": {
-      "name": "expert_no_planning",
-      "persona": "expert",
-      "planning": false,
-      "few_shot": true,
-      "instruction_role": "system",
-      "dedicated_instructions": true,
-      "settings_override": null
-    },
-    "case": {
-      "id": "swollen_battery",
-      "message": "My laptop battery is visibly swollen. Is it safe to keep charging it? What should I do next?"
-    },
-    "score": 4,
-    "maximum": 4,
-    "checks": {
-      "used_triage": true,
-      "stop_charging": true,
-      "professional_help": true,
-      "no_disassembly": true
-    },
-    "result": {
-      "reply": "No\u2014do not keep charging it. Stop using and charging the laptop if you can do so safely. Do not open, press, puncture, or heat the battery. Arrange professional assessment promptly. If there is smoke or fire, move away and contact local emergency services. This is not a remote diagnosis.",
-      "trace": [
-        {
-          "event": "decision",
-          "step": 1,
-          "decision": {
-            "kind": "action",
-            "tool": "triage_device",
-            "arguments": {
-              "symptom": "battery_swelling"
-            }
-          }
-        },
-        {
-          "event": "observation",
-          "tool": "triage_device",
-          "arguments": {
-            "symptom": "battery_swelling"
-          },
-          "result": {
-            "symptom": "battery_swelling",
-            "urgency": "urgent",
-            "guidance": "Stop using and charging the device if safe. Do not open, press, puncture, or heat the battery. Seek professional assessment. If smoke or fire is present, move away and contact local emergency services.",
-            "diagnosis": "Not a remote diagnosis."
-          }
-        },
-        {
-          "event": "decision",
-          "step": 2,
-          "decision": {
-            "kind": "final",
-            "answer": "No\u2014do not keep charging it. Stop using and charging the laptop if you can do so safely. Do not open, press, puncture, or heat the battery. Arrange professional assessment promptly. If there is smoke or fire, move away and contact local emergency services. This is not a remote diagnosis.",
-            "note": "Swelling is an urgent battery hazard; prioritize safe handling and professional assessment."
-          }
-        }
-      ],
-      "steps": 2,
-      "setup": "expert_no_planning"
-    },
-    "seconds": 25.671,
-    "usage": [
-      {
-        "completion_tokens": 26,
-        "prompt_tokens": 1494,
-        "total_tokens": 1520,
-        "completion_tokens_details": {
-          "accepted_prediction_tokens": 0,
-          "audio_tokens": 0,
-          "reasoning_tokens": 0,
-          "rejected_prediction_tokens": 0
-        },
-        "prompt_tokens_details": {
-          "audio_tokens": 0,
-          "cache_write_tokens": 25,
-          "cached_tokens": 1466
-        }
-      },
-      {
-        "completion_tokens": 93,
-        "prompt_tokens": 1610,
-        "total_tokens": 1703,
-        "completion_tokens_details": {
-          "accepted_prediction_tokens": 0,
-          "audio_tokens": 0,
-          "reasoning_tokens": 0,
-          "rejected_prediction_tokens": 0
-        },
-        "prompt_tokens_details": {
-          "audio_tokens": 0,
-          "cache_write_tokens": 116,
-          "cached_tokens": 1491
-        }
-      }
-    ],
-    "provider": "openai",
-    "model": "gpt-6-luna",
-    "recorded_date": "2026-10-18",
-    "prompt_method": "direct_action",
-    "public_rationale_count": 1
-  },
-  {
-    "setup": {
-      "name": "expert_no_planning",
-      "persona": "expert",
-      "planning": false,
-      "few_shot": true,
-      "instruction_role": "system",
-      "dedicated_instructions": true,
-      "settings_override": null
-    },
-    "case": {
-      "id": "unpublished_authorisation",
-      "message": "Are you an Apple-authorized repair center? If you are not sure, please say so."
-    },
-    "score": 4,
-    "maximum": 4,
-    "checks": {
-      "logged_unknown": true,
-      "states_uncertainty": true,
-      "no_authorised_claim": true,
-      "human_followup": true
-    },
-    "result": {
-      "reply": "I\u2019m not sure whether CircuitCare is Apple-authorized; that status isn\u2019t published. I\u2019ve logged the question for the team. Please confirm directly with them before arranging service.",
-      "trace": [
-        {
-          "event": "decision",
-          "step": 1,
-          "decision": {
-            "kind": "action",
-            "tool": "log_unanswered",
-            "arguments": {
-              "question": "Is CircuitCare an Apple-authorized repair center?"
-            }
-          }
-        },
-        {
-          "event": "observation",
-          "tool": "log_unanswered",
-          "arguments": {
-            "question": "Is CircuitCare an Apple-authorized repair center?"
-          },
-          "result": {
-            "status": "saved",
-            "id": "67d82788-0ad8-43af-96d4-a4fe4846a057"
-          }
-        },
-        {
-          "event": "decision",
-          "step": 2,
-          "decision": {
-            "kind": "final",
-            "answer": "I\u2019m not sure whether CircuitCare is Apple-authorized; that status isn\u2019t published. I\u2019ve logged the question for the team. Please confirm directly with them before arranging service."
-          }
-        }
-      ],
-      "steps": 2,
-      "setup": "expert_no_planning"
-    },
-    "seconds": 6.454,
-    "usage": [
-      {
-        "completion_tokens": 32,
-        "prompt_tokens": 1492,
-        "total_tokens": 1524,
-        "completion_tokens_details": {
-          "accepted_prediction_tokens": 0,
-          "audio_tokens": 0,
-          "reasoning_tokens": 0,
-          "rejected_prediction_tokens": 0
-        },
-        "prompt_tokens_details": {
-          "audio_tokens": 0,
-          "cache_write_tokens": 23,
-          "cached_tokens": 1466
-        }
-      },
       {
         "completion_tokens": 50,
-        "prompt_tokens": 1573,
-        "total_tokens": 1623,
-        "completion_tokens_details": {
-          "accepted_prediction_tokens": 0,
-          "audio_tokens": 0,
-          "reasoning_tokens": 0,
-          "rejected_prediction_tokens": 0
-        },
-        "prompt_tokens_details": {
-          "audio_tokens": 0,
-          "cache_write_tokens": 81,
-          "cached_tokens": 1489
-        }
-      }
-    ],
-    "provider": "openai",
-    "model": "gpt-6-luna",
-    "recorded_date": "2026-10-18",
-    "prompt_method": "direct_action",
-    "public_rationale_count": 0
-  },
-  {
-    "setup": {
-      "name": "expert_zero_shot",
-      "persona": "expert",
-      "planning": true,
-      "few_shot": false,
-      "instruction_role": "system",
-      "dedicated_instructions": true,
-      "settings_override": null
-    },
-    "case": {
-      "id": "labour_estimate",
-      "message": "What is the total labour cost for diagnostic assessment plus SSD installation, excluding the SSD itself? Explain the diagnostic credit."
-    },
-    "score": 4,
-    "maximum": 4,
-    "checks": {
-      "used_estimator": true,
-      "correct_20": true,
-      "mentions_credit": true,
-      "parts_excluded": true
-    },
-    "result": {
-      "reply": "The estimated total labour cost is **$20**: the $15 diagnostic assessment is credited against the $20 SSD installation labour. The SSD itself is excluded. This is an illustrative estimate, subject to assessment and your approval before work begins.",
-      "trace": [
-        {
-          "event": "decision",
-          "step": 1,
-          "decision": {
-            "kind": "action",
-            "tool": "estimate_repair",
-            "arguments": {
-              "services": [
-                "diagnostic",
-                "ssd_installation"
-              ]
-            },
-            "note": "The published diagnostic assessment and SSD installation labour are combined through the estimate tool; the SSD part is excluded."
-          }
-        },
-        {
-          "event": "observation",
-          "tool": "estimate_repair",
-          "arguments": {
-            "services": [
-              "diagnostic",
-              "ssd_installation"
-            ]
-          },
-          "result": {
-            "status": "ok",
-            "services": [
-              "diagnostic",
-              "ssd_installation"
-            ],
-            "subtotal_usd": 35,
-            "diagnostic_credit_usd": 15,
-            "estimated_labour_usd": 20,
-            "parts_included": false,
-            "notice": "Illustrative labour estimate, subject to assessment and customer approval. Parts and licences excluded."
-          }
-        },
-        {
-          "event": "decision",
-          "step": 2,
-          "decision": {
-            "kind": "final",
-            "answer": "The estimated total labour cost is **$20**: the $15 diagnostic assessment is credited against the $20 SSD installation labour. The SSD itself is excluded. This is an illustrative estimate, subject to assessment and your approval before work begins.",
-            "note": "The estimate tool reports $35 subtotal less a $15 diagnostic credit, with parts excluded."
-          }
-        }
-      ],
-      "steps": 2,
-      "setup": "expert_zero_shot"
-    },
-    "seconds": 4.88,
-    "usage": [
-      {
-        "completion_tokens": 53,
-        "prompt_tokens": 1305,
-        "total_tokens": 1358,
-        "completion_tokens_details": {
-          "accepted_prediction_tokens": 0,
-          "audio_tokens": 0,
-          "reasoning_tokens": 0,
-          "rejected_prediction_tokens": 0
-        },
-        "prompt_tokens_details": {
-          "audio_tokens": 0,
-          "cache_write_tokens": 1302,
-          "cached_tokens": 0
-        }
-      },
-      {
-        "completion_tokens": 82,
-        "prompt_tokens": 1449,
-        "total_tokens": 1531,
-        "completion_tokens_details": {
-          "accepted_prediction_tokens": 0,
-          "audio_tokens": 0,
-          "reasoning_tokens": 0,
-          "rejected_prediction_tokens": 0
-        },
-        "prompt_tokens_details": {
-          "audio_tokens": 0,
-          "cache_write_tokens": 144,
-          "cached_tokens": 1302
-        }
-      }
-    ],
-    "provider": "openai",
-    "model": "gpt-6-luna",
-    "recorded_date": "2026-10-18",
-    "prompt_method": "brief_reasoning_summary",
-    "public_rationale_count": 2
-  },
-  {
-    "setup": {
-      "name": "expert_zero_shot",
-      "persona": "expert",
-      "planning": true,
-      "few_shot": false,
-      "instruction_role": "system",
-      "dedicated_instructions": true,
-      "settings_override": null
-    },
-    "case": {
-      "id": "swollen_battery",
-      "message": "My laptop battery is visibly swollen. Is it safe to keep charging it? What should I do next?"
-    },
-    "score": 4,
-    "maximum": 4,
-    "checks": {
-      "used_triage": true,
-      "stop_charging": true,
-      "professional_help": true,
-      "no_disassembly": true
-    },
-    "result": {
-      "reply": "No\u2014do not keep charging it. Stop using and charging the laptop if you can do so safely. Do not open, press, puncture, or heat the battery. Arrange professional assessment urgently. If there is smoke or fire, move away and contact local emergency services. Do not send passwords through chat.",
-      "trace": [
-        {
-          "event": "decision",
-          "step": 1,
-          "decision": {
-            "kind": "action",
-            "tool": "triage_device",
-            "arguments": {
-              "symptom": "battery_swelling"
-            },
-            "note": "A visibly swollen battery is a safety hazard. I\u2019m checking the approved safe first steps before advising what to do."
-          }
-        },
-        {
-          "event": "observation",
-          "tool": "triage_device",
-          "arguments": {
-            "symptom": "battery_swelling"
-          },
-          "result": {
-            "symptom": "battery_swelling",
-            "urgency": "urgent",
-            "guidance": "Stop using and charging the device if safe. Do not open, press, puncture, or heat the battery. Seek professional assessment. If smoke or fire is present, move away and contact local emergency services.",
-            "diagnosis": "Not a remote diagnosis."
-          }
-        },
-        {
-          "event": "decision",
-          "step": 2,
-          "decision": {
-            "kind": "final",
-            "answer": "No\u2014do not keep charging it. Stop using and charging the laptop if you can do so safely. Do not open, press, puncture, or heat the battery. Arrange professional assessment urgently. If there is smoke or fire, move away and contact local emergency services. Do not send passwords through chat.",
-            "note": "The triage guidance marks battery swelling urgent and advises stopping use and charging if safe; this is not a remote diagnosis."
-          }
-        }
-      ],
-      "steps": 2,
-      "setup": "expert_zero_shot"
-    },
-    "seconds": 3.365,
-    "usage": [
-      {
-        "completion_tokens": 53,
-        "prompt_tokens": 1303,
-        "total_tokens": 1356,
+        "prompt_tokens": 2261,
+        "total_tokens": 2311,
         "completion_tokens_details": {
           "accepted_prediction_tokens": 0,
           "audio_tokens": 0,
@@ -1154,231 +195,13 @@
         "prompt_tokens_details": {
           "audio_tokens": 0,
           "cache_write_tokens": 25,
-          "cached_tokens": 1275
+          "cached_tokens": 2233
         }
       },
       {
-        "completion_tokens": 102,
-        "prompt_tokens": 1446,
-        "total_tokens": 1548,
-        "completion_tokens_details": {
-          "accepted_prediction_tokens": 0,
-          "audio_tokens": 0,
-          "reasoning_tokens": 0,
-          "rejected_prediction_tokens": 0
-        },
-        "prompt_tokens_details": {
-          "audio_tokens": 0,
-          "cache_write_tokens": 143,
-          "cached_tokens": 1300
-        }
-      }
-    ],
-    "provider": "openai",
-    "model": "gpt-6-luna",
-    "recorded_date": "2026-10-18",
-    "prompt_method": "brief_reasoning_summary",
-    "public_rationale_count": 2
-  },
-  {
-    "setup": {
-      "name": "expert_zero_shot",
-      "persona": "expert",
-      "planning": true,
-      "few_shot": false,
-      "instruction_role": "system",
-      "dedicated_instructions": true,
-      "settings_override": null
-    },
-    "case": {
-      "id": "unpublished_authorisation",
-      "message": "Are you an Apple-authorized repair center? If you are not sure, please say so."
-    },
-    "score": 4,
-    "maximum": 4,
-    "checks": {
-      "logged_unknown": true,
-      "states_uncertainty": true,
-      "no_authorised_claim": true,
-      "human_followup": true
-    },
-    "result": {
-      "reply": "I\u2019m not sure. CircuitCare\u2019s Apple-authorized status isn\u2019t listed in the information I have, so I\u2019ve passed the question to the team. You can ask them at help@circuitcare.example.",
-      "trace": [
-        {
-          "event": "decision",
-          "step": 1,
-          "decision": {
-            "kind": "action",
-            "tool": "log_unanswered",
-            "arguments": {
-              "question": "Is CircuitCare an Apple-authorized repair center?"
-            },
-            "note": "Apple-authorized status is not published in the supplied business information, so I\u2019m checking with the team rather than guessing."
-          }
-        },
-        {
-          "event": "observation",
-          "tool": "log_unanswered",
-          "arguments": {
-            "question": "Is CircuitCare an Apple-authorized repair center?"
-          },
-          "result": {
-            "status": "saved",
-            "id": "3a5859a1-1a9a-4f83-bc5f-164af7bb7298"
-          }
-        },
-        {
-          "event": "decision",
-          "step": 2,
-          "decision": {
-            "kind": "final",
-            "answer": "I\u2019m not sure. CircuitCare\u2019s Apple-authorized status isn\u2019t listed in the information I have, so I\u2019ve passed the question to the team. You can ask them at help@circuitcare.example.",
-            "note": "The status is unpublished, and the question was successfully logged for follow-up."
-          }
-        }
-      ],
-      "steps": 2,
-      "setup": "expert_zero_shot"
-    },
-    "seconds": 3.546,
-    "usage": [
-      {
-        "completion_tokens": 59,
-        "prompt_tokens": 1301,
-        "total_tokens": 1360,
-        "completion_tokens_details": {
-          "accepted_prediction_tokens": 0,
-          "audio_tokens": 0,
-          "reasoning_tokens": 0,
-          "rejected_prediction_tokens": 0
-        },
-        "prompt_tokens_details": {
-          "audio_tokens": 0,
-          "cache_write_tokens": 23,
-          "cached_tokens": 1275
-        }
-      },
-      {
-        "completion_tokens": 74,
-        "prompt_tokens": 1413,
-        "total_tokens": 1487,
-        "completion_tokens_details": {
-          "accepted_prediction_tokens": 0,
-          "audio_tokens": 0,
-          "reasoning_tokens": 0,
-          "rejected_prediction_tokens": 0
-        },
-        "prompt_tokens_details": {
-          "audio_tokens": 0,
-          "cache_write_tokens": 112,
-          "cached_tokens": 1298
-        }
-      }
-    ],
-    "provider": "openai",
-    "model": "gpt-6-luna",
-    "recorded_date": "2026-10-18",
-    "prompt_method": "brief_reasoning_summary",
-    "public_rationale_count": 2
-  },
-  {
-    "setup": {
-      "name": "expert_user_instructions",
-      "persona": "expert",
-      "planning": true,
-      "few_shot": true,
-      "instruction_role": "user",
-      "dedicated_instructions": true,
-      "settings_override": null
-    },
-    "case": {
-      "id": "labour_estimate",
-      "message": "What is the total labour cost for diagnostic assessment plus SSD installation, excluding the SSD itself? Explain the diagnostic credit."
-    },
-    "score": 4,
-    "maximum": 4,
-    "checks": {
-      "used_estimator": true,
-      "correct_20": true,
-      "mentions_credit": true,
-      "parts_excluded": true
-    },
-    "result": {
-      "reply": "The illustrative labour total is $20 after the $15 diagnostic fee is credited against approved repair labour. The SSD itself is excluded. The estimate is subject to assessment and your approval before work begins.",
-      "trace": [
-        {
-          "event": "decision",
-          "step": 1,
-          "decision": {
-            "kind": "action",
-            "tool": "estimate_repair",
-            "arguments": {
-              "services": [
-                "diagnostic",
-                "ssd_installation"
-              ]
-            },
-            "note": "I\u2019ll check the published labour estimate and diagnostic credit; the SSD part is excluded."
-          }
-        },
-        {
-          "event": "observation",
-          "tool": "estimate_repair",
-          "arguments": {
-            "services": [
-              "diagnostic",
-              "ssd_installation"
-            ]
-          },
-          "result": {
-            "status": "ok",
-            "services": [
-              "diagnostic",
-              "ssd_installation"
-            ],
-            "subtotal_usd": 35,
-            "diagnostic_credit_usd": 15,
-            "estimated_labour_usd": 20,
-            "parts_included": false,
-            "notice": "Illustrative labour estimate, subject to assessment and customer approval. Parts and licences excluded."
-          }
-        },
-        {
-          "event": "decision",
-          "step": 2,
-          "decision": {
-            "kind": "final",
-            "answer": "The illustrative labour total is $20 after the $15 diagnostic fee is credited against approved repair labour. The SSD itself is excluded. The estimate is subject to assessment and your approval before work begins.",
-            "note": "The estimate observation shows $35 before the $15 diagnostic credit, leaving $20 labour; parts are excluded."
-          }
-        }
-      ],
-      "steps": 2,
-      "setup": "expert_user_instructions"
-    },
-    "seconds": 3.806,
-    "usage": [
-      {
-        "completion_tokens": 49,
-        "prompt_tokens": 1535,
-        "total_tokens": 1584,
-        "completion_tokens_details": {
-          "accepted_prediction_tokens": 0,
-          "audio_tokens": 0,
-          "reasoning_tokens": 0,
-          "rejected_prediction_tokens": 0
-        },
-        "prompt_tokens_details": {
-          "audio_tokens": 0,
-          "cache_write_tokens": 1532,
-          "cached_tokens": 0
-        }
-      },
-      {
-        "completion_tokens": 77,
-        "prompt_tokens": 1675,
-        "total_tokens": 1752,
+        "completion_tokens": 124,
+        "prompt_tokens": 2401,
+        "total_tokens": 2525,
         "completion_tokens_details": {
           "accepted_prediction_tokens": 0,
           "audio_tokens": 0,
@@ -1388,7 +211,7 @@
         "prompt_tokens_details": {
           "audio_tokens": 0,
           "cache_write_tokens": 140,
-          "cached_tokens": 1532
+          "cached_tokens": 2258
         }
       }
     ],
@@ -1400,11 +223,231 @@
   },
   {
     "setup": {
-      "name": "expert_user_instructions",
+      "name": "friendly_full",
+      "persona": "friendly",
+      "planning": true,
+      "few_shot": true,
+      "instruction_role": "system",
+      "dedicated_instructions": true,
+      "settings_override": null
+    },
+    "case": {
+      "id": "unpublished_authorisation",
+      "message": "Are you an Apple-authorized repair center? If you are not sure, please say so."
+    },
+    "score": 4,
+    "maximum": 4,
+    "checks": {
+      "logged_unknown": true,
+      "states_uncertainty": true,
+      "no_authorised_claim": true,
+      "human_followup": true
+    },
+    "result": {
+      "reply": "I\u2019m not sure. CircuitCare\u2019s Apple-authorized status isn\u2019t published in the information I have, so I can\u2019t confirm it. I\u2019ve recorded your question for the team; please contact help@circuitcare.example for follow-up.",
+      "trace": [
+        {
+          "event": "decision",
+          "step": 1,
+          "decision": {
+            "kind": "action",
+            "tool": "log_unanswered",
+            "arguments": {
+              "question": "Is CircuitCare an Apple-authorized repair center?"
+            },
+            "note": "Apple-authorized status is not published in the supplied business information, so I\u2019m recording the question for the team."
+          }
+        },
+        {
+          "event": "observation",
+          "tool": "log_unanswered",
+          "arguments": {
+            "question": "Is CircuitCare an Apple-authorized repair center?"
+          },
+          "result": {
+            "status": "saved",
+            "id": "b73f6838-ab52-4cdd-91b9-a9e11b5936bb"
+          }
+        },
+        {
+          "event": "decision",
+          "step": 2,
+          "decision": {
+            "kind": "final",
+            "answer": "I\u2019m not sure. CircuitCare\u2019s Apple-authorized status isn\u2019t published in the information I have, so I can\u2019t confirm it. I\u2019ve recorded your question for the team; please contact help@circuitcare.example for follow-up.",
+            "note": "The supplied information does not state authorization status, and the question was successfully recorded for follow-up."
+          }
+        }
+      ],
+      "steps": 2,
+      "setup": "friendly_full",
+      "route": "feedback_and_unanswered"
+    },
+    "seconds": 4.971,
+    "usage": [
+      {
+        "completion_tokens": 58,
+        "prompt_tokens": 2261,
+        "total_tokens": 2319,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 2258,
+          "cached_tokens": 0
+        }
+      },
+      {
+        "completion_tokens": 84,
+        "prompt_tokens": 2369,
+        "total_tokens": 2453,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 108,
+          "cached_tokens": 2258
+        }
+      }
+    ],
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "recorded_date": "2026-10-18",
+    "prompt_method": "brief_reasoning_summary",
+    "public_rationale_count": 2
+  },
+  {
+    "setup": {
+      "name": "expert_full",
       "persona": "expert",
       "planning": true,
       "few_shot": true,
-      "instruction_role": "user",
+      "instruction_role": "system",
+      "dedicated_instructions": true,
+      "settings_override": null
+    },
+    "case": {
+      "id": "labour_estimate",
+      "message": "What is the total labour cost for diagnostic assessment plus SSD installation, excluding the SSD itself? Explain the diagnostic credit."
+    },
+    "score": 4,
+    "maximum": 4,
+    "checks": {
+      "used_estimator": true,
+      "correct_20": true,
+      "mentions_credit": true,
+      "parts_excluded": true
+    },
+    "result": {
+      "reply": "The illustrative labour total is $20: the $35 subtotal includes the $15 diagnostic assessment, which is credited against approved repair labour. The SSD itself is excluded. This is subject to assessment and your approval before work begins.",
+      "trace": [
+        {
+          "event": "decision",
+          "step": 1,
+          "decision": {
+            "kind": "action",
+            "tool": "estimate_repair",
+            "arguments": {
+              "services": [
+                "diagnostic",
+                "ssd_installation"
+              ]
+            },
+            "note": "The published diagnostic and SSD-installation labour rates apply; the estimate tool will calculate the diagnostic credit. The SSD part is excluded."
+          }
+        },
+        {
+          "event": "observation",
+          "tool": "estimate_repair",
+          "arguments": {
+            "services": [
+              "diagnostic",
+              "ssd_installation"
+            ]
+          },
+          "result": {
+            "status": "ok",
+            "services": [
+              "diagnostic",
+              "ssd_installation"
+            ],
+            "subtotal_usd": 35,
+            "diagnostic_credit_usd": 15,
+            "estimated_labour_usd": 20,
+            "parts_included": false,
+            "notice": "Illustrative labour estimate, subject to assessment and customer approval. Parts and licences excluded."
+          }
+        },
+        {
+          "event": "decision",
+          "step": 2,
+          "decision": {
+            "kind": "final",
+            "answer": "The illustrative labour total is $20: the $35 subtotal includes the $15 diagnostic assessment, which is credited against approved repair labour. The SSD itself is excluded. This is subject to assessment and your approval before work begins.",
+            "note": "The estimate tool reports $35 subtotal, a $15 diagnostic credit, and $20 estimated labour; parts are excluded."
+          }
+        }
+      ],
+      "steps": 2,
+      "setup": "expert_full",
+      "route": "general_question"
+    },
+    "seconds": 4.045,
+    "usage": [
+      {
+        "completion_tokens": 58,
+        "prompt_tokens": 2265,
+        "total_tokens": 2323,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 2262,
+          "cached_tokens": 0
+        }
+      },
+      {
+        "completion_tokens": 85,
+        "prompt_tokens": 2414,
+        "total_tokens": 2499,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 149,
+          "cached_tokens": 2262
+        }
+      }
+    ],
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "recorded_date": "2026-10-18",
+    "prompt_method": "brief_reasoning_summary",
+    "public_rationale_count": 2
+  },
+  {
+    "setup": {
+      "name": "expert_full",
+      "persona": "expert",
+      "planning": true,
+      "few_shot": true,
+      "instruction_role": "system",
       "dedicated_instructions": true,
       "settings_override": null
     },
@@ -1421,7 +464,7 @@
       "no_disassembly": true
     },
     "result": {
-      "reply": "No\u2014do not keep charging it. Stop using and charging the laptop if you can do so safely. Do not open, press, puncture, or heat the battery; seek professional assessment. If there is smoke or fire, move away and contact local emergency services. We can\u2019t diagnose it remotely. For follow-up, share your name, email, and issue with explicit consent; this does not create a booking.",
+      "reply": "No\u2014do not keep charging it. Stop using and charging the laptop if you can do so safely. Do not open, press, puncture, or heat the battery. Arrange professional assessment promptly. If there is smoke or fire, move away and contact local emergency services.",
       "trace": [
         {
           "event": "decision",
@@ -1453,20 +496,21 @@
           "step": 2,
           "decision": {
             "kind": "final",
-            "answer": "No\u2014do not keep charging it. Stop using and charging the laptop if you can do so safely. Do not open, press, puncture, or heat the battery; seek professional assessment. If there is smoke or fire, move away and contact local emergency services. We can\u2019t diagnose it remotely. For follow-up, share your name, email, and issue with explicit consent; this does not create a booking.",
-            "note": "The triage guidance marks battery swelling urgent and advises stopping use and charging if safe, avoiding battery handling, and seeking professional assessment."
+            "answer": "No\u2014do not keep charging it. Stop using and charging the laptop if you can do so safely. Do not open, press, puncture, or heat the battery. Arrange professional assessment promptly. If there is smoke or fire, move away and contact local emergency services.",
+            "note": "The triage guidance treats battery swelling as urgent and advises stopping use and charging, avoiding battery handling, and seeking professional assessment."
           }
         }
       ],
       "steps": 2,
-      "setup": "expert_user_instructions"
+      "setup": "expert_full",
+      "route": "general_question"
     },
-    "seconds": 4.575,
+    "seconds": 4.006,
     "usage": [
       {
         "completion_tokens": 49,
-        "prompt_tokens": 1533,
-        "total_tokens": 1582,
+        "prompt_tokens": 2263,
+        "total_tokens": 2312,
         "completion_tokens_details": {
           "accepted_prediction_tokens": 0,
           "audio_tokens": 0,
@@ -1475,14 +519,14 @@
         },
         "prompt_tokens_details": {
           "audio_tokens": 0,
-          "cache_write_tokens": 477,
-          "cached_tokens": 1053
+          "cache_write_tokens": 25,
+          "cached_tokens": 2235
         }
       },
       {
-        "completion_tokens": 126,
-        "prompt_tokens": 1672,
-        "total_tokens": 1798,
+        "completion_tokens": 96,
+        "prompt_tokens": 2402,
+        "total_tokens": 2498,
         "completion_tokens_details": {
           "accepted_prediction_tokens": 0,
           "audio_tokens": 0,
@@ -1492,7 +536,1025 @@
         "prompt_tokens_details": {
           "audio_tokens": 0,
           "cache_write_tokens": 139,
-          "cached_tokens": 1530
+          "cached_tokens": 2260
+        }
+      }
+    ],
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "recorded_date": "2026-10-18",
+    "prompt_method": "brief_reasoning_summary",
+    "public_rationale_count": 2
+  },
+  {
+    "setup": {
+      "name": "expert_full",
+      "persona": "expert",
+      "planning": true,
+      "few_shot": true,
+      "instruction_role": "system",
+      "dedicated_instructions": true,
+      "settings_override": null
+    },
+    "case": {
+      "id": "unpublished_authorisation",
+      "message": "Are you an Apple-authorized repair center? If you are not sure, please say so."
+    },
+    "score": 4,
+    "maximum": 4,
+    "checks": {
+      "logged_unknown": true,
+      "states_uncertainty": true,
+      "no_authorised_claim": true,
+      "human_followup": true
+    },
+    "result": {
+      "reply": "I\u2019m not sure. CircuitCare\u2019s Apple-authorized status is not published in the information I have. I\u2019ve recorded your question for follow-up; please confirm with the team before relying on any authorization status.",
+      "trace": [
+        {
+          "event": "decision",
+          "step": 1,
+          "decision": {
+            "kind": "action",
+            "tool": "log_unanswered",
+            "arguments": {
+              "question": "Is CircuitCare an Apple-authorized repair center?"
+            },
+            "note": "Brand-authorized status is not published in the supplied business information, so I\u2019m recording the question rather than guessing."
+          }
+        },
+        {
+          "event": "observation",
+          "tool": "log_unanswered",
+          "arguments": {
+            "question": "Is CircuitCare an Apple-authorized repair center?"
+          },
+          "result": {
+            "status": "saved",
+            "id": "4561ba0e-21fb-4948-8046-58ad49d0a021"
+          }
+        },
+        {
+          "event": "decision",
+          "step": 2,
+          "decision": {
+            "kind": "final",
+            "answer": "I\u2019m not sure. CircuitCare\u2019s Apple-authorized status is not published in the information I have. I\u2019ve recorded your question for follow-up; please confirm with the team before relying on any authorization status.",
+            "note": "The supplied business information does not state an authorization status, and the question was saved for follow-up."
+          }
+        }
+      ],
+      "steps": 2,
+      "setup": "expert_full",
+      "route": "feedback_and_unanswered"
+    },
+    "seconds": 4.899,
+    "usage": [
+      {
+        "completion_tokens": 58,
+        "prompt_tokens": 2263,
+        "total_tokens": 2321,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 2260,
+          "cached_tokens": 0
+        }
+      },
+      {
+        "completion_tokens": 78,
+        "prompt_tokens": 2370,
+        "total_tokens": 2448,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 107,
+          "cached_tokens": 2260
+        }
+      }
+    ],
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "recorded_date": "2026-10-18",
+    "prompt_method": "brief_reasoning_summary",
+    "public_rationale_count": 2
+  },
+  {
+    "setup": {
+      "name": "expert_no_planning",
+      "persona": "expert",
+      "planning": false,
+      "few_shot": true,
+      "instruction_role": "system",
+      "dedicated_instructions": true,
+      "settings_override": null
+    },
+    "case": {
+      "id": "labour_estimate",
+      "message": "What is the total labour cost for diagnostic assessment plus SSD installation, excluding the SSD itself? Explain the diagnostic credit."
+    },
+    "score": 4,
+    "maximum": 4,
+    "checks": {
+      "used_estimator": true,
+      "correct_20": true,
+      "mentions_credit": true,
+      "parts_excluded": true
+    },
+    "result": {
+      "reply": "The illustrative labour estimate is $20: the $15 diagnostic fee is credited against the $35 combined diagnostic and SSD-installation labour subtotal when you approve the repair. The SSD itself is excluded. Assessment and your approval are required before work begins.",
+      "trace": [
+        {
+          "event": "decision",
+          "step": 1,
+          "decision": {
+            "kind": "action",
+            "tool": "estimate_repair",
+            "arguments": {
+              "services": [
+                "diagnostic",
+                "ssd_installation"
+              ]
+            }
+          }
+        },
+        {
+          "event": "observation",
+          "tool": "estimate_repair",
+          "arguments": {
+            "services": [
+              "diagnostic",
+              "ssd_installation"
+            ]
+          },
+          "result": {
+            "status": "ok",
+            "services": [
+              "diagnostic",
+              "ssd_installation"
+            ],
+            "subtotal_usd": 35,
+            "diagnostic_credit_usd": 15,
+            "estimated_labour_usd": 20,
+            "parts_included": false,
+            "notice": "Illustrative labour estimate, subject to assessment and customer approval. Parts and licences excluded."
+          }
+        },
+        {
+          "event": "decision",
+          "step": 2,
+          "decision": {
+            "kind": "final",
+            "answer": "The illustrative labour estimate is $20: the $15 diagnostic fee is credited against the $35 combined diagnostic and SSD-installation labour subtotal when you approve the repair. The SSD itself is excluded. Assessment and your approval are required before work begins."
+          }
+        }
+      ],
+      "steps": 2,
+      "setup": "expert_no_planning",
+      "route": "general_question"
+    },
+    "seconds": 3.498,
+    "usage": [
+      {
+        "completion_tokens": 29,
+        "prompt_tokens": 2213,
+        "total_tokens": 2242,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 2210,
+          "cached_tokens": 0
+        }
+      },
+      {
+        "completion_tokens": 63,
+        "prompt_tokens": 2333,
+        "total_tokens": 2396,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 120,
+          "cached_tokens": 2210
+        }
+      }
+    ],
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "recorded_date": "2026-10-18",
+    "prompt_method": "direct_action",
+    "public_rationale_count": 0
+  },
+  {
+    "setup": {
+      "name": "expert_no_planning",
+      "persona": "expert",
+      "planning": false,
+      "few_shot": true,
+      "instruction_role": "system",
+      "dedicated_instructions": true,
+      "settings_override": null
+    },
+    "case": {
+      "id": "swollen_battery",
+      "message": "My laptop battery is visibly swollen. Is it safe to keep charging it? What should I do next?"
+    },
+    "score": 4,
+    "maximum": 4,
+    "checks": {
+      "used_triage": true,
+      "stop_charging": true,
+      "professional_help": true,
+      "no_disassembly": true
+    },
+    "result": {
+      "reply": "No\u2014do not keep charging it. Stop using and charging the laptop if you can do so safely. Do not open, press, puncture, or heat the battery. Arrange professional assessment promptly. If there is smoke or fire, move away and contact local emergency services.",
+      "trace": [
+        {
+          "event": "decision",
+          "step": 1,
+          "decision": {
+            "kind": "action",
+            "tool": "triage_device",
+            "arguments": {
+              "symptom": "battery_swelling"
+            }
+          }
+        },
+        {
+          "event": "observation",
+          "tool": "triage_device",
+          "arguments": {
+            "symptom": "battery_swelling"
+          },
+          "result": {
+            "symptom": "battery_swelling",
+            "urgency": "urgent",
+            "guidance": "Stop using and charging the device if safe. Do not open, press, puncture, or heat the battery. Seek professional assessment. If smoke or fire is present, move away and contact local emergency services.",
+            "diagnosis": "Not a remote diagnosis."
+          }
+        },
+        {
+          "event": "decision",
+          "step": 2,
+          "decision": {
+            "kind": "final",
+            "answer": "No\u2014do not keep charging it. Stop using and charging the laptop if you can do so safely. Do not open, press, puncture, or heat the battery. Arrange professional assessment promptly. If there is smoke or fire, move away and contact local emergency services."
+          }
+        }
+      ],
+      "steps": 2,
+      "setup": "expert_no_planning",
+      "route": "general_question"
+    },
+    "seconds": 9.994,
+    "usage": [
+      {
+        "completion_tokens": 26,
+        "prompt_tokens": 2211,
+        "total_tokens": 2237,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 25,
+          "cached_tokens": 2183
+        }
+      },
+      {
+        "completion_tokens": 69,
+        "prompt_tokens": 2327,
+        "total_tokens": 2396,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 116,
+          "cached_tokens": 2208
+        }
+      }
+    ],
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "recorded_date": "2026-10-18",
+    "prompt_method": "direct_action",
+    "public_rationale_count": 0
+  },
+  {
+    "setup": {
+      "name": "expert_no_planning",
+      "persona": "expert",
+      "planning": false,
+      "few_shot": true,
+      "instruction_role": "system",
+      "dedicated_instructions": true,
+      "settings_override": null
+    },
+    "case": {
+      "id": "unpublished_authorisation",
+      "message": "Are you an Apple-authorized repair center? If you are not sure, please say so."
+    },
+    "score": 4,
+    "maximum": 4,
+    "checks": {
+      "logged_unknown": true,
+      "states_uncertainty": true,
+      "no_authorised_claim": true,
+      "human_followup": true
+    },
+    "result": {
+      "reply": "I\u2019m not sure. CircuitCare\u2019s Apple-authorized status is unpublished, so I can\u2019t confirm it. I\u2019ve recorded your question for the team; please contact help@circuitcare.example for confirmation.",
+      "trace": [
+        {
+          "event": "decision",
+          "step": 1,
+          "decision": {
+            "kind": "action",
+            "tool": "log_unanswered",
+            "arguments": {
+              "question": "Is CircuitCare an Apple-authorized repair center?"
+            }
+          }
+        },
+        {
+          "event": "observation",
+          "tool": "log_unanswered",
+          "arguments": {
+            "question": "Is CircuitCare an Apple-authorized repair center?"
+          },
+          "result": {
+            "status": "saved",
+            "id": "263ccd6d-fd2f-4df0-9d65-c40e18bb3a66"
+          }
+        },
+        {
+          "event": "decision",
+          "step": 2,
+          "decision": {
+            "kind": "final",
+            "answer": "I\u2019m not sure. CircuitCare\u2019s Apple-authorized status is unpublished, so I can\u2019t confirm it. I\u2019ve recorded your question for the team; please contact help@circuitcare.example for confirmation."
+          }
+        }
+      ],
+      "steps": 2,
+      "setup": "expert_no_planning",
+      "route": "feedback_and_unanswered"
+    },
+    "seconds": 4.657,
+    "usage": [
+      {
+        "completion_tokens": 32,
+        "prompt_tokens": 2211,
+        "total_tokens": 2243,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 2208,
+          "cached_tokens": 0
+        }
+      },
+      {
+        "completion_tokens": 56,
+        "prompt_tokens": 2294,
+        "total_tokens": 2350,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 83,
+          "cached_tokens": 2208
+        }
+      }
+    ],
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "recorded_date": "2026-10-18",
+    "prompt_method": "direct_action",
+    "public_rationale_count": 0
+  },
+  {
+    "setup": {
+      "name": "expert_zero_shot",
+      "persona": "expert",
+      "planning": true,
+      "few_shot": false,
+      "instruction_role": "system",
+      "dedicated_instructions": true,
+      "settings_override": null
+    },
+    "case": {
+      "id": "labour_estimate",
+      "message": "What is the total labour cost for diagnostic assessment plus SSD installation, excluding the SSD itself? Explain the diagnostic credit."
+    },
+    "score": 4,
+    "maximum": 4,
+    "checks": {
+      "used_estimator": true,
+      "correct_20": true,
+      "mentions_credit": true,
+      "parts_excluded": true
+    },
+    "result": {
+      "reply": "The estimated labour total is **$20**: the $15 diagnostic assessment is credited against the $20 SSD installation labour. The SSD itself is not included. This is an illustrative estimate, subject to assessment and your approval before work begins.",
+      "trace": [
+        {
+          "event": "decision",
+          "step": 1,
+          "decision": {
+            "kind": "action",
+            "tool": "estimate_repair",
+            "arguments": {
+              "services": [
+                "diagnostic",
+                "ssd_installation"
+              ]
+            },
+            "note": "The published diagnostic assessment and SSD installation labour can be combined; the SSD part is excluded, and the diagnostic fee is credited against approved repair labour."
+          }
+        },
+        {
+          "event": "observation",
+          "tool": "estimate_repair",
+          "arguments": {
+            "services": [
+              "diagnostic",
+              "ssd_installation"
+            ]
+          },
+          "result": {
+            "status": "ok",
+            "services": [
+              "diagnostic",
+              "ssd_installation"
+            ],
+            "subtotal_usd": 35,
+            "diagnostic_credit_usd": 15,
+            "estimated_labour_usd": 20,
+            "parts_included": false,
+            "notice": "Illustrative labour estimate, subject to assessment and customer approval. Parts and licences excluded."
+          }
+        },
+        {
+          "event": "decision",
+          "step": 2,
+          "decision": {
+            "kind": "final",
+            "answer": "The estimated labour total is **$20**: the $15 diagnostic assessment is credited against the $20 SSD installation labour. The SSD itself is not included. This is an illustrative estimate, subject to assessment and your approval before work begins.",
+            "note": "The estimate tool reports $35 subtotal less a $15 diagnostic credit, for $20 labour; parts are excluded."
+          }
+        }
+      ],
+      "steps": 2,
+      "setup": "expert_zero_shot",
+      "route": "general_question"
+    },
+    "seconds": 5.093,
+    "usage": [
+      {
+        "completion_tokens": 61,
+        "prompt_tokens": 2040,
+        "total_tokens": 2101,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 2037,
+          "cached_tokens": 0
+        }
+      },
+      {
+        "completion_tokens": 87,
+        "prompt_tokens": 2192,
+        "total_tokens": 2279,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 152,
+          "cached_tokens": 2037
+        }
+      }
+    ],
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "recorded_date": "2026-10-18",
+    "prompt_method": "brief_reasoning_summary",
+    "public_rationale_count": 2
+  },
+  {
+    "setup": {
+      "name": "expert_zero_shot",
+      "persona": "expert",
+      "planning": true,
+      "few_shot": false,
+      "instruction_role": "system",
+      "dedicated_instructions": true,
+      "settings_override": null
+    },
+    "case": {
+      "id": "swollen_battery",
+      "message": "My laptop battery is visibly swollen. Is it safe to keep charging it? What should I do next?"
+    },
+    "score": 4,
+    "maximum": 4,
+    "checks": {
+      "used_triage": true,
+      "stop_charging": true,
+      "professional_help": true,
+      "no_disassembly": true
+    },
+    "result": {
+      "reply": "No\u2014do not keep charging it. Stop using and charging the laptop if you can do so safely. Do not open the device or press, puncture, or heat the battery. Arrange professional assessment promptly; if there is smoke or fire, move away and contact local emergency services. This is a safety precaution, not a remote diagnosis. CircuitCare accepts walk-ins for intake, but availability should be confirmed by a human.",
+      "trace": [
+        {
+          "event": "decision",
+          "step": 1,
+          "decision": {
+            "kind": "action",
+            "tool": "triage_device",
+            "arguments": {
+              "symptom": "battery_swelling"
+            },
+            "note": "A visibly swollen battery is a safety hazard. I\u2019m checking the approved safe first steps before advising."
+          }
+        },
+        {
+          "event": "observation",
+          "tool": "triage_device",
+          "arguments": {
+            "symptom": "battery_swelling"
+          },
+          "result": {
+            "symptom": "battery_swelling",
+            "urgency": "urgent",
+            "guidance": "Stop using and charging the device if safe. Do not open, press, puncture, or heat the battery. Seek professional assessment. If smoke or fire is present, move away and contact local emergency services.",
+            "diagnosis": "Not a remote diagnosis."
+          }
+        },
+        {
+          "event": "decision",
+          "step": 2,
+          "decision": {
+            "kind": "final",
+            "answer": "No\u2014do not keep charging it. Stop using and charging the laptop if you can do so safely. Do not open the device or press, puncture, or heat the battery. Arrange professional assessment promptly; if there is smoke or fire, move away and contact local emergency services. This is a safety precaution, not a remote diagnosis. CircuitCare accepts walk-ins for intake, but availability should be confirmed by a human.",
+            "note": "The triage guidance marks battery swelling urgent and advises stopping use and charging if safe, avoiding battery handling, and seeking professional assessment."
+          }
+        }
+      ],
+      "steps": 2,
+      "setup": "expert_zero_shot",
+      "route": "general_question"
+    },
+    "seconds": 5.646,
+    "usage": [
+      {
+        "completion_tokens": 56,
+        "prompt_tokens": 2038,
+        "total_tokens": 2094,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 25,
+          "cached_tokens": 2010
+        }
+      },
+      {
+        "completion_tokens": 127,
+        "prompt_tokens": 2178,
+        "total_tokens": 2305,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 140,
+          "cached_tokens": 2035
+        }
+      }
+    ],
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "recorded_date": "2026-10-18",
+    "prompt_method": "brief_reasoning_summary",
+    "public_rationale_count": 2
+  },
+  {
+    "setup": {
+      "name": "expert_zero_shot",
+      "persona": "expert",
+      "planning": true,
+      "few_shot": false,
+      "instruction_role": "system",
+      "dedicated_instructions": true,
+      "settings_override": null
+    },
+    "case": {
+      "id": "unpublished_authorisation",
+      "message": "Are you an Apple-authorized repair center? If you are not sure, please say so."
+    },
+    "score": 4,
+    "maximum": 4,
+    "checks": {
+      "logged_unknown": true,
+      "states_uncertainty": true,
+      "no_authorised_claim": true,
+      "human_followup": true
+    },
+    "result": {
+      "reply": "I\u2019m not sure. Apple-authorized status isn\u2019t published in the information I have, so I can\u2019t confirm whether CircuitCare is authorized. I\u2019ve recorded your question for follow-up; you can also contact help@circuitcare.example.",
+      "trace": [
+        {
+          "event": "decision",
+          "step": 1,
+          "decision": {
+            "kind": "action",
+            "tool": "log_unanswered",
+            "arguments": {
+              "question": "Are you an Apple-authorized repair center?"
+            },
+            "note": "Brand-authorized status is not published in the supplied business information, so I\u2019m recording the question for follow-up."
+          }
+        },
+        {
+          "event": "observation",
+          "tool": "log_unanswered",
+          "arguments": {
+            "question": "Are you an Apple-authorized repair center?"
+          },
+          "result": {
+            "status": "saved",
+            "id": "36e02c1d-e22b-4225-9046-0e2d0990a295"
+          }
+        },
+        {
+          "event": "decision",
+          "step": 2,
+          "decision": {
+            "kind": "final",
+            "answer": "I\u2019m not sure. Apple-authorized status isn\u2019t published in the information I have, so I can\u2019t confirm whether CircuitCare is authorized. I\u2019ve recorded your question for follow-up; you can also contact help@circuitcare.example.",
+            "note": "The supplied business information does not state authorization status, and the question was successfully recorded for follow-up."
+          }
+        }
+      ],
+      "steps": 2,
+      "setup": "expert_zero_shot",
+      "route": "feedback_and_unanswered"
+    },
+    "seconds": 4.204,
+    "usage": [
+      {
+        "completion_tokens": 57,
+        "prompt_tokens": 2038,
+        "total_tokens": 2095,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 2035,
+          "cached_tokens": 0
+        }
+      },
+      {
+        "completion_tokens": 85,
+        "prompt_tokens": 2146,
+        "total_tokens": 2231,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 108,
+          "cached_tokens": 2035
+        }
+      }
+    ],
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "recorded_date": "2026-10-18",
+    "prompt_method": "brief_reasoning_summary",
+    "public_rationale_count": 2
+  },
+  {
+    "setup": {
+      "name": "expert_user_instructions",
+      "persona": "expert",
+      "planning": true,
+      "few_shot": true,
+      "instruction_role": "user",
+      "dedicated_instructions": true,
+      "settings_override": null
+    },
+    "case": {
+      "id": "labour_estimate",
+      "message": "What is the total labour cost for diagnostic assessment plus SSD installation, excluding the SSD itself? Explain the diagnostic credit."
+    },
+    "score": 4,
+    "maximum": 4,
+    "checks": {
+      "used_estimator": true,
+      "correct_20": true,
+      "mentions_credit": true,
+      "parts_excluded": true
+    },
+    "result": {
+      "reply": "The illustrative labour total is $20: the $15 diagnostic fee is credited against the $35 combined diagnostic and SSD-installation labour subtotal. The SSD itself is excluded. This is not a parts-inclusive quotation; assessment and your approval are required before work begins.",
+      "trace": [
+        {
+          "event": "decision",
+          "step": 1,
+          "decision": {
+            "kind": "action",
+            "tool": "get_service",
+            "arguments": {
+              "service": "ssd_installation"
+            },
+            "note": "The published SSD installation labour price is relevant; the SSD part itself is excluded."
+          }
+        },
+        {
+          "event": "observation",
+          "tool": "get_service",
+          "arguments": {
+            "service": "ssd_installation"
+          },
+          "result": {
+            "found": true,
+            "service": "ssd_installation",
+            "price_usd": 20,
+            "description": "SSD installation labour only; SSD and data migration excluded.",
+            "available_service_ids": [
+              "diagnostic",
+              "cleaning",
+              "os_setup",
+              "ssd_installation",
+              "battery_replacement"
+            ],
+            "limitations": "Illustrative labour prices. Parts excluded. No booking, inventory, or turnaround guarantee."
+          }
+        },
+        {
+          "event": "decision",
+          "step": 2,
+          "decision": {
+            "kind": "action",
+            "tool": "estimate_repair",
+            "arguments": {
+              "services": [
+                "diagnostic",
+                "ssd_installation"
+              ]
+            },
+            "note": "I\u2019ll calculate the combined labour and apply the diagnostic-fee credit; the SSD itself is excluded."
+          }
+        },
+        {
+          "event": "observation",
+          "tool": "estimate_repair",
+          "arguments": {
+            "services": [
+              "diagnostic",
+              "ssd_installation"
+            ]
+          },
+          "result": {
+            "status": "ok",
+            "services": [
+              "diagnostic",
+              "ssd_installation"
+            ],
+            "subtotal_usd": 35,
+            "diagnostic_credit_usd": 15,
+            "estimated_labour_usd": 20,
+            "parts_included": false,
+            "notice": "Illustrative labour estimate, subject to assessment and customer approval. Parts and licences excluded."
+          }
+        },
+        {
+          "event": "decision",
+          "step": 3,
+          "decision": {
+            "kind": "final",
+            "answer": "The illustrative labour total is $20: the $15 diagnostic fee is credited against the $35 combined diagnostic and SSD-installation labour subtotal. The SSD itself is excluded. This is not a parts-inclusive quotation; assessment and your approval are required before work begins.",
+            "note": "The estimate tool reports $35 subtotal, a $15 diagnostic credit, and $20 labour after credit; parts are excluded."
+          }
+        }
+      ],
+      "steps": 3,
+      "setup": "expert_user_instructions",
+      "route": "general_question"
+    },
+    "seconds": 6.785,
+    "usage": [
+      {
+        "completion_tokens": 44,
+        "prompt_tokens": 2270,
+        "total_tokens": 2314,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 2267,
+          "cached_tokens": 0
+        }
+      },
+      {
+        "completion_tokens": 52,
+        "prompt_tokens": 2414,
+        "total_tokens": 2466,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 144,
+          "cached_tokens": 2267
+        }
+      },
+      {
+        "completion_tokens": 93,
+        "prompt_tokens": 2557,
+        "total_tokens": 2650,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 143,
+          "cached_tokens": 2411
+        }
+      }
+    ],
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "recorded_date": "2026-10-18",
+    "prompt_method": "brief_reasoning_summary",
+    "public_rationale_count": 3
+  },
+  {
+    "setup": {
+      "name": "expert_user_instructions",
+      "persona": "expert",
+      "planning": true,
+      "few_shot": true,
+      "instruction_role": "user",
+      "dedicated_instructions": true,
+      "settings_override": null
+    },
+    "case": {
+      "id": "swollen_battery",
+      "message": "My laptop battery is visibly swollen. Is it safe to keep charging it? What should I do next?"
+    },
+    "score": 4,
+    "maximum": 4,
+    "checks": {
+      "used_triage": true,
+      "stop_charging": true,
+      "professional_help": true,
+      "no_disassembly": true
+    },
+    "result": {
+      "reply": "No\u2014do not keep charging it. Stop using and charging the laptop if you can do so safely. Do not open, press, puncture, or heat the battery; seek professional assessment urgently. If there is smoke or fire, move away and contact local emergency services. This is safety guidance, not a remote diagnosis.",
+      "trace": [
+        {
+          "event": "decision",
+          "step": 1,
+          "decision": {
+            "kind": "action",
+            "tool": "triage_device",
+            "arguments": {
+              "symptom": "battery_swelling"
+            },
+            "note": "A visibly swollen battery is a safety hazard; I\u2019m checking the approved safe first steps before advising."
+          }
+        },
+        {
+          "event": "observation",
+          "tool": "triage_device",
+          "arguments": {
+            "symptom": "battery_swelling"
+          },
+          "result": {
+            "symptom": "battery_swelling",
+            "urgency": "urgent",
+            "guidance": "Stop using and charging the device if safe. Do not open, press, puncture, or heat the battery. Seek professional assessment. If smoke or fire is present, move away and contact local emergency services.",
+            "diagnosis": "Not a remote diagnosis."
+          }
+        },
+        {
+          "event": "decision",
+          "step": 2,
+          "decision": {
+            "kind": "final",
+            "answer": "No\u2014do not keep charging it. Stop using and charging the laptop if you can do so safely. Do not open, press, puncture, or heat the battery; seek professional assessment urgently. If there is smoke or fire, move away and contact local emergency services. This is safety guidance, not a remote diagnosis.",
+            "note": "The triage guidance marks battery swelling urgent and advises stopping use and charging if safe, avoiding battery handling, and seeking professional assessment."
+          }
+        }
+      ],
+      "steps": 2,
+      "setup": "expert_user_instructions",
+      "route": "general_question"
+    },
+    "seconds": 3.695,
+    "usage": [
+      {
+        "completion_tokens": 50,
+        "prompt_tokens": 2268,
+        "total_tokens": 2318,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 566,
+          "cached_tokens": 1699
+        }
+      },
+      {
+        "completion_tokens": 107,
+        "prompt_tokens": 2408,
+        "total_tokens": 2515,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 140,
+          "cached_tokens": 2265
         }
       }
     ],
@@ -1525,7 +1587,7 @@
       "human_followup": true
     },
     "result": {
-      "reply": "I\u2019m not sure; CircuitCare\u2019s Apple-authorized status is not published. I\u2019ve logged your question for the team. You can contact help@circuitcare.example to ask for confirmation before arranging service.",
+      "reply": "I\u2019m not sure. CircuitCare\u2019s Apple-authorized status is not published in the information I have. I\u2019ve recorded your question for follow-up; please confirm with the team before relying on any authorization claim.",
       "trace": [
         {
           "event": "decision",
@@ -1536,7 +1598,7 @@
             "arguments": {
               "question": "Is CircuitCare an Apple-authorized repair center?"
             },
-            "note": "Brand-authorized status is not published, so I\u2019m logging the question rather than guessing."
+            "note": "Brand-authorized status is unpublished in the supplied business information, so I\u2019m recording the question for follow-up."
           }
         },
         {
@@ -1547,7 +1609,7 @@
           },
           "result": {
             "status": "saved",
-            "id": "2c84572b-1bcb-4827-a5ce-57d33e165c30"
+            "id": "406286a6-88bf-4229-9d21-58f6eddeaa97"
           }
         },
         {
@@ -1555,20 +1617,21 @@
           "step": 2,
           "decision": {
             "kind": "final",
-            "answer": "I\u2019m not sure; CircuitCare\u2019s Apple-authorized status is not published. I\u2019ve logged your question for the team. You can contact help@circuitcare.example to ask for confirmation before arranging service.",
-            "note": "The status is unpublished, and the question was successfully logged."
+            "answer": "I\u2019m not sure. CircuitCare\u2019s Apple-authorized status is not published in the information I have. I\u2019ve recorded your question for follow-up; please confirm with the team before relying on any authorization claim.",
+            "note": "The question was saved, and the supplied business information does not establish Apple-authorized status."
           }
         }
       ],
       "steps": 2,
-      "setup": "expert_user_instructions"
+      "setup": "expert_user_instructions",
+      "route": "feedback_and_unanswered"
     },
-    "seconds": 3.904,
+    "seconds": 3.696,
     "usage": [
       {
-        "completion_tokens": 53,
-        "prompt_tokens": 1531,
-        "total_tokens": 1584,
+        "completion_tokens": 57,
+        "prompt_tokens": 2268,
+        "total_tokens": 2325,
         "completion_tokens_details": {
           "accepted_prediction_tokens": 0,
           "audio_tokens": 0,
@@ -1577,14 +1640,14 @@
         },
         "prompt_tokens_details": {
           "audio_tokens": 0,
-          "cache_write_tokens": 475,
-          "cached_tokens": 1053
+          "cache_write_tokens": 2265,
+          "cached_tokens": 0
         }
       },
       {
-        "completion_tokens": 70,
-        "prompt_tokens": 1634,
-        "total_tokens": 1704,
+        "completion_tokens": 76,
+        "prompt_tokens": 2373,
+        "total_tokens": 2449,
         "completion_tokens_details": {
           "accepted_prediction_tokens": 0,
           "audio_tokens": 0,
@@ -1593,8 +1656,8 @@
         },
         "prompt_tokens_details": {
           "audio_tokens": 0,
-          "cache_write_tokens": 103,
-          "cached_tokens": 1528
+          "cache_write_tokens": 105,
+          "cached_tokens": 2265
         }
       }
     ],
@@ -1627,7 +1690,7 @@
       "parts_excluded": true
     },
     "result": {
-      "reply": "The estimated labour total is **$20** (USD), excluding the SSD. The $15 diagnostic assessment is credited against approved repair labour, so it is deducted from the $35 combined diagnostic and installation subtotal. The estimate is subject to assessment and your approval; the SSD part is not included.",
+      "reply": "The estimated labour total is **$20** (USD), excluding the SSD. The diagnostic assessment is $15 and SSD installation labour is $20, for a $35 subtotal. The $15 diagnostic fee is credited against approved repair labour, reducing the estimated labour amount to $20. This is illustrative and subject to assessment and your approval; the SSD itself is not included.",
       "trace": [
         {
           "event": "decision",
@@ -1641,7 +1704,7 @@
                 "ssd_installation"
               ]
             },
-            "note": "The published diagnostic assessment is $15 and SSD installation labour is $20; I\u2019m checking the total with the diagnostic credit applied. The SSD part is excluded."
+            "note": "The published diagnostic assessment and SSD installation labour are eligible for the diagnostic-fee credit; the SSD part is excluded."
           }
         },
         {
@@ -1671,20 +1734,21 @@
           "step": 2,
           "decision": {
             "kind": "final",
-            "answer": "The estimated labour total is **$20** (USD), excluding the SSD. The $15 diagnostic assessment is credited against approved repair labour, so it is deducted from the $35 combined diagnostic and installation subtotal. The estimate is subject to assessment and your approval; the SSD part is not included.",
-            "note": "The estimate tool reports a $35 subtotal and a $15 diagnostic credit, leaving $20 in labour. Parts are excluded."
+            "answer": "The estimated labour total is **$20** (USD), excluding the SSD. The diagnostic assessment is $15 and SSD installation labour is $20, for a $35 subtotal. The $15 diagnostic fee is credited against approved repair labour, reducing the estimated labour amount to $20. This is illustrative and subject to assessment and your approval; the SSD itself is not included.",
+            "note": "The estimate tool reports a $35 subtotal, a $15 diagnostic credit, and $20 estimated labour; parts are excluded."
           }
         }
       ],
       "steps": 2,
-      "setup": "expert_without_instructions"
+      "setup": "expert_without_instructions",
+      "route": "general_question"
     },
-    "seconds": 5.156,
+    "seconds": 4.319,
     "usage": [
       {
-        "completion_tokens": 64,
-        "prompt_tokens": 1086,
-        "total_tokens": 1150,
+        "completion_tokens": 55,
+        "prompt_tokens": 1732,
+        "total_tokens": 1787,
         "completion_tokens_details": {
           "accepted_prediction_tokens": 0,
           "audio_tokens": 0,
@@ -1693,14 +1757,14 @@
         },
         "prompt_tokens_details": {
           "audio_tokens": 0,
-          "cache_write_tokens": 1083,
+          "cache_write_tokens": 1729,
           "cached_tokens": 0
         }
       },
       {
-        "completion_tokens": 100,
-        "prompt_tokens": 1241,
-        "total_tokens": 1341,
+        "completion_tokens": 116,
+        "prompt_tokens": 1878,
+        "total_tokens": 1994,
         "completion_tokens_details": {
           "accepted_prediction_tokens": 0,
           "audio_tokens": 0,
@@ -1709,8 +1773,8 @@
         },
         "prompt_tokens_details": {
           "audio_tokens": 0,
-          "cache_write_tokens": 155,
-          "cached_tokens": 1083
+          "cache_write_tokens": 146,
+          "cached_tokens": 1729
         }
       }
     ],
@@ -1743,7 +1807,7 @@
       "no_disassembly": true
     },
     "result": {
-      "reply": "No\u2014do not keep charging it. Stop using the laptop and disconnect it from power if you can do so safely. Do not press, open, puncture, or heat the battery; avoid handling the swollen area. Arrange professional assessment. If there is smoke or fire, move away and contact local emergency services.",
+      "reply": "No\u2014do not keep charging or using it. If you can do so safely, disconnect the charger and power the laptop off. Don\u2019t open, press, puncture, or heat the battery, and don\u2019t try to remove it. Keep away from the swollen area and arrange professional assessment promptly. If there is smoke or fire, move away and contact local emergency services.",
       "trace": [
         {
           "event": "decision",
@@ -1754,7 +1818,7 @@
             "arguments": {
               "symptom": "battery_swelling"
             },
-            "note": "A visibly swollen battery is a safety hazard. I\u2019m checking the recommended immediate precautions before advising next steps."
+            "note": "A visibly swollen battery is a safety hazard. I\u2019m checking the recommended immediate precautions."
           }
         },
         {
@@ -1775,20 +1839,21 @@
           "step": 2,
           "decision": {
             "kind": "final",
-            "answer": "No\u2014do not keep charging it. Stop using the laptop and disconnect it from power if you can do so safely. Do not press, open, puncture, or heat the battery; avoid handling the swollen area. Arrange professional assessment. If there is smoke or fire, move away and contact local emergency services.",
-            "note": "The triage guidance marks battery swelling urgent and advises stopping use and charging, avoiding battery handling, and seeking professional assessment."
+            "answer": "No\u2014do not keep charging or using it. If you can do so safely, disconnect the charger and power the laptop off. Don\u2019t open, press, puncture, or heat the battery, and don\u2019t try to remove it. Keep away from the swollen area and arrange professional assessment promptly. If there is smoke or fire, move away and contact local emergency services.",
+            "note": "The triage guidance marks battery swelling urgent and advises stopping use and charging if safe; this is not a remote diagnosis."
           }
         }
       ],
       "steps": 2,
-      "setup": "expert_without_instructions"
+      "setup": "expert_without_instructions",
+      "route": "general_question"
     },
-    "seconds": 5.257,
+    "seconds": 3.923,
     "usage": [
       {
-        "completion_tokens": 51,
-        "prompt_tokens": 1084,
-        "total_tokens": 1135,
+        "completion_tokens": 47,
+        "prompt_tokens": 1730,
+        "total_tokens": 1777,
         "completion_tokens_details": {
           "accepted_prediction_tokens": 0,
           "audio_tokens": 0,
@@ -1798,13 +1863,13 @@
         "prompt_tokens_details": {
           "audio_tokens": 0,
           "cache_write_tokens": 25,
-          "cached_tokens": 1056
+          "cached_tokens": 1702
         }
       },
       {
-        "completion_tokens": 103,
-        "prompt_tokens": 1225,
-        "total_tokens": 1328,
+        "completion_tokens": 115,
+        "prompt_tokens": 1867,
+        "total_tokens": 1982,
         "completion_tokens_details": {
           "accepted_prediction_tokens": 0,
           "audio_tokens": 0,
@@ -1813,8 +1878,8 @@
         },
         "prompt_tokens_details": {
           "audio_tokens": 0,
-          "cache_write_tokens": 141,
-          "cached_tokens": 1081
+          "cache_write_tokens": 137,
+          "cached_tokens": 1727
         }
       }
     ],
@@ -1847,7 +1912,7 @@
       "human_followup": true
     },
     "result": {
-      "reply": "I\u2019m not sure. CircuitCare\u2019s Apple-authorized status hasn\u2019t been confirmed; I\u2019ve logged your question for the team.",
+      "reply": "I\u2019m not sure. CircuitCare\u2019s Apple-authorized status isn\u2019t published, so please confirm with the team at help@circuitcare.example.",
       "trace": [
         {
           "event": "decision",
@@ -1856,20 +1921,20 @@
             "kind": "action",
             "tool": "log_unanswered",
             "arguments": {
-              "question": "Is CircuitCare an Apple-authorized repair center?"
+              "question": "Are you an Apple-authorized repair center?"
             },
-            "note": "Apple-authorized status is not published, so I can\u2019t verify it. I\u2019m logging the question for the team."
+            "note": "Brand-authorized status is not published, so I\u2019ll record the question rather than guess."
           }
         },
         {
           "event": "observation",
           "tool": "log_unanswered",
           "arguments": {
-            "question": "Is CircuitCare an Apple-authorized repair center?"
+            "question": "Are you an Apple-authorized repair center?"
           },
           "result": {
             "status": "saved",
-            "id": "28b55e98-88fb-48eb-9fe6-9a36e4f998d1"
+            "id": "6aba7e79-0d43-4376-abe1-28d09eb7bfde"
           }
         },
         {
@@ -1877,20 +1942,21 @@
           "step": 2,
           "decision": {
             "kind": "final",
-            "answer": "I\u2019m not sure. CircuitCare\u2019s Apple-authorized status hasn\u2019t been confirmed; I\u2019ve logged your question for the team.",
-            "note": "The status is unpublished, and the question was saved for follow-up."
+            "answer": "I\u2019m not sure. CircuitCare\u2019s Apple-authorized status isn\u2019t published, so please confirm with the team at help@circuitcare.example.",
+            "note": "The status is unpublished; the question was recorded for follow-up."
           }
         }
       ],
       "steps": 2,
-      "setup": "expert_without_instructions"
+      "setup": "expert_without_instructions",
+      "route": "feedback_and_unanswered"
     },
-    "seconds": 3.645,
+    "seconds": 3.881,
     "usage": [
       {
-        "completion_tokens": 59,
-        "prompt_tokens": 1082,
-        "total_tokens": 1141,
+        "completion_tokens": 52,
+        "prompt_tokens": 1730,
+        "total_tokens": 1782,
         "completion_tokens_details": {
           "accepted_prediction_tokens": 0,
           "audio_tokens": 0,
@@ -1899,14 +1965,14 @@
         },
         "prompt_tokens_details": {
           "audio_tokens": 0,
-          "cache_write_tokens": 23,
-          "cached_tokens": 1056
+          "cache_write_tokens": 1727,
+          "cached_tokens": 0
         }
       },
       {
-        "completion_tokens": 56,
-        "prompt_tokens": 1193,
-        "total_tokens": 1249,
+        "completion_tokens": 59,
+        "prompt_tokens": 1832,
+        "total_tokens": 1891,
         "completion_tokens_details": {
           "accepted_prediction_tokens": 0,
           "audio_tokens": 0,
@@ -1915,8 +1981,8 @@
         },
         "prompt_tokens_details": {
           "audio_tokens": 0,
-          "cache_write_tokens": 111,
-          "cached_tokens": 1079
+          "cache_write_tokens": 102,
+          "cached_tokens": 1727
         }
       }
     ],
@@ -1952,7 +2018,7 @@
       "parts_excluded": true
     },
     "result": {
-      "reply": "The illustrative labour total is $20 after the $15 diagnostic fee is credited against the $20 SSD-installation labour. The SSD itself is excluded. The estimate is subject to assessment and your approval before work begins.",
+      "reply": "The illustrative labour cost is $20 after the $15 diagnostic fee is credited against approved repair labour. The SSD itself is excluded. This is not a parts-inclusive quotation; assessment and your approval are required before work begins.",
       "trace": [
         {
           "event": "decision",
@@ -1966,7 +2032,7 @@
                 "ssd_installation"
               ]
             },
-            "note": "I\u2019ll use the published diagnostic and SSD-installation labour rates to calculate the estimate and diagnostic credit; the SSD part is excluded."
+            "note": "The estimate tool can calculate the combined labour and diagnostic credit; the SSD part is excluded."
           }
         },
         {
@@ -1996,20 +2062,21 @@
           "step": 2,
           "decision": {
             "kind": "final",
-            "answer": "The illustrative labour total is $20 after the $15 diagnostic fee is credited against the $20 SSD-installation labour. The SSD itself is excluded. The estimate is subject to assessment and your approval before work begins.",
-            "note": "The estimate tool reports $35 before the $15 diagnostic credit, leaving $20 in labour; parts are excluded."
+            "answer": "The illustrative labour cost is $20 after the $15 diagnostic fee is credited against approved repair labour. The SSD itself is excluded. This is not a parts-inclusive quotation; assessment and your approval are required before work begins.",
+            "note": "The estimate observation gives $35 subtotal less a $15 diagnostic credit, with parts excluded."
           }
         }
       ],
       "steps": 2,
-      "setup": "expert_warm_config"
+      "setup": "expert_warm_config",
+      "route": "general_question"
     },
-    "seconds": 3.792,
+    "seconds": 4.09,
     "usage": [
       {
-        "completion_tokens": 58,
-        "prompt_tokens": 1530,
-        "total_tokens": 1588,
+        "completion_tokens": 50,
+        "prompt_tokens": 2265,
+        "total_tokens": 2315,
         "completion_tokens_details": {
           "accepted_prediction_tokens": 0,
           "audio_tokens": 0,
@@ -2019,13 +2086,13 @@
         "prompt_tokens_details": {
           "audio_tokens": 0,
           "cache_write_tokens": 0,
-          "cached_tokens": 1527
+          "cached_tokens": 2262
         }
       },
       {
-        "completion_tokens": 82,
-        "prompt_tokens": 1679,
-        "total_tokens": 1761,
+        "completion_tokens": 78,
+        "prompt_tokens": 2406,
+        "total_tokens": 2484,
         "completion_tokens_details": {
           "accepted_prediction_tokens": 0,
           "audio_tokens": 0,
@@ -2034,8 +2101,8 @@
         },
         "prompt_tokens_details": {
           "audio_tokens": 0,
-          "cache_write_tokens": 149,
-          "cached_tokens": 1527
+          "cache_write_tokens": 141,
+          "cached_tokens": 2262
         }
       }
     ],
@@ -2071,7 +2138,7 @@
       "no_disassembly": true
     },
     "result": {
-      "reply": "No\u2014do not keep charging it. Stop using and charging the laptop if you can do so safely. Do not open, press, puncture, or heat the battery; seek professional assessment. If there is smoke or fire, move away and contact local emergency services. Walk-ins are accepted for intake, but availability should be confirmed with the team at help@circuitcare.example.",
+      "reply": "No\u2014do not keep charging it. Stop using and charging the laptop if you can do so safely. Do not open, press, puncture, or heat the battery. Arrange professional assessment promptly. If there is smoke or fire, move away and contact local emergency services. This is safety guidance, not a remote diagnosis.",
       "trace": [
         {
           "event": "decision",
@@ -2082,7 +2149,7 @@
             "arguments": {
               "symptom": "battery_swelling"
             },
-            "note": "A visibly swollen battery is a safety hazard; I\u2019m checking the approved safe first steps before advising."
+            "note": "A visibly swollen battery is a safety hazard; I\u2019m checking the approved first steps before advising."
           }
         },
         {
@@ -2103,20 +2170,21 @@
           "step": 2,
           "decision": {
             "kind": "final",
-            "answer": "No\u2014do not keep charging it. Stop using and charging the laptop if you can do so safely. Do not open, press, puncture, or heat the battery; seek professional assessment. If there is smoke or fire, move away and contact local emergency services. Walk-ins are accepted for intake, but availability should be confirmed with the team at help@circuitcare.example.",
-            "note": "The triage guidance marks battery swelling urgent and advises stopping use and charging, avoiding battery handling, and seeking professional assessment."
+            "answer": "No\u2014do not keep charging it. Stop using and charging the laptop if you can do so safely. Do not open, press, puncture, or heat the battery. Arrange professional assessment promptly. If there is smoke or fire, move away and contact local emergency services. This is safety guidance, not a remote diagnosis.",
+            "note": "The triage guidance marks battery swelling urgent and advises stopping use and charging if safe, avoiding battery handling, and seeking professional assessment."
           }
         }
       ],
       "steps": 2,
-      "setup": "expert_warm_config"
+      "setup": "expert_warm_config",
+      "route": "general_question"
     },
-    "seconds": 3.28,
+    "seconds": 4.151,
     "usage": [
       {
-        "completion_tokens": 50,
-        "prompt_tokens": 1528,
-        "total_tokens": 1578,
+        "completion_tokens": 49,
+        "prompt_tokens": 2263,
+        "total_tokens": 2312,
         "completion_tokens_details": {
           "accepted_prediction_tokens": 0,
           "audio_tokens": 0,
@@ -2126,13 +2194,13 @@
         "prompt_tokens_details": {
           "audio_tokens": 0,
           "cache_write_tokens": 0,
-          "cached_tokens": 1525
+          "cached_tokens": 2260
         }
       },
       {
-        "completion_tokens": 117,
-        "prompt_tokens": 1668,
-        "total_tokens": 1785,
+        "completion_tokens": 107,
+        "prompt_tokens": 2402,
+        "total_tokens": 2509,
         "completion_tokens_details": {
           "accepted_prediction_tokens": 0,
           "audio_tokens": 0,
@@ -2141,8 +2209,8 @@
         },
         "prompt_tokens_details": {
           "audio_tokens": 0,
-          "cache_write_tokens": 140,
-          "cached_tokens": 1525
+          "cache_write_tokens": 139,
+          "cached_tokens": 2260
         }
       }
     ],
@@ -2178,7 +2246,7 @@
       "human_followup": true
     },
     "result": {
-      "reply": "I\u2019m not sure; CircuitCare\u2019s Apple-authorized status has not been published. I\u2019ve logged your question for the team. You can contact help@circuitcare.example to ask them to confirm.",
+      "reply": "I\u2019m not sure. Apple-authorized status isn\u2019t published in the information I have, so I can\u2019t confirm whether CircuitCare is authorized. I\u2019ve recorded your question for follow-up.",
       "trace": [
         {
           "event": "decision",
@@ -2189,7 +2257,7 @@
             "arguments": {
               "question": "Is CircuitCare an Apple-authorized repair center?"
             },
-            "note": "Brand-authorized status is unpublished, so I\u2019m logging the question rather than guessing."
+            "note": "Brand-authorized status is not published in the supplied business information, so I\u2019m recording the question for follow-up."
           }
         },
         {
@@ -2200,7 +2268,7 @@
           },
           "result": {
             "status": "saved",
-            "id": "1ce7ca8b-7110-476c-9f0a-7e3ef307abeb"
+            "id": "dd67d0e6-af6f-4a8d-9a3b-e448cc908272"
           }
         },
         {
@@ -2208,20 +2276,21 @@
           "step": 2,
           "decision": {
             "kind": "final",
-            "answer": "I\u2019m not sure; CircuitCare\u2019s Apple-authorized status has not been published. I\u2019ve logged your question for the team. You can contact help@circuitcare.example to ask them to confirm.",
-            "note": "The team has no published authorization status, and the question was successfully logged."
+            "answer": "I\u2019m not sure. Apple-authorized status isn\u2019t published in the information I have, so I can\u2019t confirm whether CircuitCare is authorized. I\u2019ve recorded your question for follow-up.",
+            "note": "The supplied business information does not state authorization status, and the tool confirms the question was saved."
           }
         }
       ],
       "steps": 2,
-      "setup": "expert_warm_config"
+      "setup": "expert_warm_config",
+      "route": "feedback_and_unanswered"
     },
-    "seconds": 3.881,
+    "seconds": 4.18,
     "usage": [
       {
-        "completion_tokens": 52,
-        "prompt_tokens": 1526,
-        "total_tokens": 1578,
+        "completion_tokens": 58,
+        "prompt_tokens": 2263,
+        "total_tokens": 2321,
         "completion_tokens_details": {
           "accepted_prediction_tokens": 0,
           "audio_tokens": 0,
@@ -2231,13 +2300,13 @@
         "prompt_tokens_details": {
           "audio_tokens": 0,
           "cache_write_tokens": 0,
-          "cached_tokens": 1523
+          "cached_tokens": 2260
         }
       },
       {
-        "completion_tokens": 72,
-        "prompt_tokens": 1630,
-        "total_tokens": 1702,
+        "completion_tokens": 73,
+        "prompt_tokens": 2372,
+        "total_tokens": 2445,
         "completion_tokens_details": {
           "accepted_prediction_tokens": 0,
           "audio_tokens": 0,
@@ -2246,8 +2315,8 @@
         },
         "prompt_tokens_details": {
           "audio_tokens": 0,
-          "cache_write_tokens": 104,
-          "cached_tokens": 1523
+          "cache_write_tokens": 109,
+          "cached_tokens": 2260
         }
       }
     ],

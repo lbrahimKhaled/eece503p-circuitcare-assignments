@@ -73,3 +73,7 @@ python -m pytest -q tests
 [Private course repository](https://github.com/lbrahimKhaled/eece503p-circuitcare-assignments) → `C3/`. The normal `main` branch is sufficient; the handout requires a repository, not a special branch. Give the instructor access to this private repository before submitting the link. `summary.txt` is an identical alias under `me/` because the body and checklist use different summary filenames. Submit this C3 folder and its video independently of C4.
 
 `evidence/verification_summary.json` and `RETEST_REPORT.md` identify the current validation. Earlier DeepSeek logs are historical and are not relabeled as OpenAI runs.
+
+## Directory and extension audit
+
+This `C3/` folder is the `business_bot/` project root illustrated in the handout. Required relative file paths are preserved. The repository’s `SUBMISSION_CHECKLIST.md` maps every requirement to files and evidence. C4 now retains this exact `agent.py` and business data and directly calls the original router, PDF/TXT loader, and logging functions. The two folders remain independently runnable submissions.

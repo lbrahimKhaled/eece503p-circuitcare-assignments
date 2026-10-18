@@ -1,0 +1,383 @@
+[
+  {
+    "case": "published_service",
+    "message": "What is the diagnostic fee and your Saturday opening hours?",
+    "result": {
+      "reply": "The diagnostic assessment is listed at $15, and that fee is credited against approved repair labour. Saturday hours are 10:00\u201314:00 (Asia/Beirut).",
+      "trace": [
+        {
+          "event": "decision",
+          "step": 1,
+          "decision": {
+            "kind": "action",
+            "tool": "get_service",
+            "arguments": {
+              "service": "diagnostic"
+            },
+            "note": "I\u2019ll verify the published diagnostic price; Saturday hours are listed in the business information."
+          }
+        },
+        {
+          "event": "observation",
+          "tool": "get_service",
+          "arguments": {
+            "service": "diagnostic"
+          },
+          "result": {
+            "found": true,
+            "service": "diagnostic",
+            "price_usd": 15,
+            "description": "Workshop diagnostic assessment; fee credited against approved repair labour.",
+            "available_service_ids": [
+              "diagnostic",
+              "cleaning",
+              "os_setup",
+              "ssd_installation",
+              "battery_replacement"
+            ],
+            "limitations": "Illustrative labour prices. Parts excluded. No booking, inventory, or turnaround guarantee."
+          }
+        },
+        {
+          "event": "decision",
+          "step": 2,
+          "decision": {
+            "kind": "final",
+            "answer": "The diagnostic assessment is listed at $15, and that fee is credited against approved repair labour. Saturday hours are 10:00\u201314:00 (Asia/Beirut).",
+            "note": "The service lookup confirms the $15 fee; the supplied business information lists Saturday hours as 10:00\u201314:00."
+          }
+        }
+      ],
+      "steps": 2,
+      "setup": "c3_extension_published_service",
+      "route": "general_question"
+    },
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "usage": [
+      {
+        "completion_tokens": 44,
+        "prompt_tokens": 2253,
+        "total_tokens": 2297,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 15,
+          "cached_tokens": 2235
+        }
+      },
+      {
+        "completion_tokens": 79,
+        "prompt_tokens": 2396,
+        "total_tokens": 2475,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 143,
+          "cached_tokens": 2250
+        }
+      }
+    ],
+    "recorded_date": "2026-10-18"
+  },
+  {
+    "case": "lead",
+    "message": "My laptop is slow. I am Alex Demo, alex@example.com. I consent to saving my details and issue for repair follow-up.",
+    "result": {
+      "reply": "Your follow-up request has been saved. Back up important data, and you can check available storage and startup apps. A workshop assessment is needed before recommending hardware; the cause can\u2019t be diagnosed remotely.",
+      "trace": [
+        {
+          "event": "decision",
+          "step": 1,
+          "decision": {
+            "kind": "action",
+            "tool": "triage_device",
+            "arguments": {
+              "symptom": "slow_device"
+            },
+            "note": "The customer reports a slow laptop, so I\u2019ll check the safe first steps before offering follow-up."
+          }
+        },
+        {
+          "event": "observation",
+          "tool": "triage_device",
+          "arguments": {
+            "symptom": "slow_device"
+          },
+          "result": {
+            "symptom": "slow_device",
+            "urgency": "routine",
+            "guidance": "Back up important data. Check storage space and startup apps; a workshop assessment is needed before recommending hardware.",
+            "diagnosis": "Many hardware and software causes are possible."
+          }
+        },
+        {
+          "event": "decision",
+          "step": 2,
+          "decision": {
+            "kind": "action",
+            "tool": "record_interest",
+            "arguments": {
+              "name": "Alex Demo",
+              "email": "alex@example.com",
+              "issue": "Slow laptop",
+              "consent": true
+            },
+            "note": "The customer provided a name, email, issue, and explicit consent, so I\u2019ll save the follow-up request."
+          }
+        },
+        {
+          "event": "observation",
+          "tool": "record_interest",
+          "arguments": {
+            "name": "Alex Demo",
+            "email": "alex@example.com",
+            "issue": "Slow laptop",
+            "consent": true
+          },
+          "result": {
+            "status": "saved",
+            "id": "180c1cc2-2cf1-437e-840f-8d1da313adb8"
+          }
+        },
+        {
+          "event": "decision",
+          "step": 3,
+          "decision": {
+            "kind": "final",
+            "answer": "Your follow-up request has been saved. Back up important data, and you can check available storage and startup apps. A workshop assessment is needed before recommending hardware; the cause can\u2019t be diagnosed remotely.",
+            "note": "The follow-up tool confirmed the request was saved. The triage guidance recommends basic checks and workshop assessment without a remote diagnosis."
+          }
+        }
+      ],
+      "steps": 3,
+      "setup": "c3_extension_lead",
+      "route": "lead_collection"
+    },
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "usage": [
+      {
+        "completion_tokens": 49,
+        "prompt_tokens": 2267,
+        "total_tokens": 2316,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 2264,
+          "cached_tokens": 0
+        }
+      },
+      {
+        "completion_tokens": 65,
+        "prompt_tokens": 2387,
+        "total_tokens": 2452,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 120,
+          "cached_tokens": 2264
+        }
+      },
+      {
+        "completion_tokens": 81,
+        "prompt_tokens": 2501,
+        "total_tokens": 2582,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 114,
+          "cached_tokens": 2384
+        }
+      }
+    ],
+    "recorded_date": "2026-10-18"
+  },
+  {
+    "case": "feedback",
+    "message": "Feedback: please use simpler language in repair updates.",
+    "result": {
+      "reply": "Thanks for the feedback. I\u2019ve shared your request for simpler language in repair updates with the team.",
+      "trace": [
+        {
+          "event": "decision",
+          "step": 1,
+          "decision": {
+            "kind": "action",
+            "tool": "log_unanswered",
+            "arguments": {
+              "question": "Feedback: please use simpler language in repair updates."
+            },
+            "note": "This is explicit feedback about repair updates, so I\u2019m recording it for the team."
+          }
+        },
+        {
+          "event": "observation",
+          "tool": "log_unanswered",
+          "arguments": {
+            "question": "Feedback: please use simpler language in repair updates."
+          },
+          "result": {
+            "status": "saved",
+            "id": "ed0f8ee7-5112-463f-b32d-538b85761877"
+          }
+        },
+        {
+          "event": "decision",
+          "step": 2,
+          "decision": {
+            "kind": "final",
+            "answer": "Thanks for the feedback. I\u2019ve shared your request for simpler language in repair updates with the team.",
+            "note": "The feedback tool confirmed it was saved."
+          }
+        }
+      ],
+      "steps": 2,
+      "setup": "c3_extension_feedback",
+      "route": "feedback_and_unanswered"
+    },
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "usage": [
+      {
+        "completion_tokens": 52,
+        "prompt_tokens": 2252,
+        "total_tokens": 2304,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 14,
+          "cached_tokens": 2235
+        }
+      },
+      {
+        "completion_tokens": 44,
+        "prompt_tokens": 2352,
+        "total_tokens": 2396,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 100,
+          "cached_tokens": 2249
+        }
+      }
+    ],
+    "recorded_date": "2026-10-18"
+  },
+  {
+    "case": "unknown",
+    "message": "Are you an Apple-authorized repair center?",
+    "result": {
+      "reply": "CircuitCare\u2019s Apple-authorized status is not published, so I can\u2019t confirm it. I\u2019ve recorded your question for follow-up.",
+      "trace": [
+        {
+          "event": "decision",
+          "step": 1,
+          "decision": {
+            "kind": "action",
+            "tool": "log_unanswered",
+            "arguments": {
+              "question": "Is CircuitCare an Apple-authorized repair center?"
+            },
+            "note": "Brand-authorized status is not published, so I\u2019m recording the question for follow-up."
+          }
+        },
+        {
+          "event": "observation",
+          "tool": "log_unanswered",
+          "arguments": {
+            "question": "Is CircuitCare an Apple-authorized repair center?"
+          },
+          "result": {
+            "status": "saved",
+            "id": "ca75a66c-beb9-493d-9d12-630d628e59b4"
+          }
+        },
+        {
+          "event": "decision",
+          "step": 2,
+          "decision": {
+            "kind": "final",
+            "answer": "CircuitCare\u2019s Apple-authorized status is not published, so I can\u2019t confirm it. I\u2019ve recorded your question for follow-up.",
+            "note": "The authorization status is unpublished, and the feedback tool confirmed the question was saved."
+          }
+        }
+      ],
+      "steps": 2,
+      "setup": "c3_extension_unknown",
+      "route": "feedback_and_unanswered"
+    },
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "usage": [
+      {
+        "completion_tokens": 53,
+        "prompt_tokens": 2253,
+        "total_tokens": 2306,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 13,
+          "cached_tokens": 2237
+        }
+      },
+      {
+        "completion_tokens": 59,
+        "prompt_tokens": 2356,
+        "total_tokens": 2415,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 103,
+          "cached_tokens": 2250
+        }
+      }
+    ],
+    "recorded_date": "2026-10-18"
+  }
+]

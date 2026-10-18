@@ -1,2 +1,3 @@
-...................                                                      [100%]
-19 passed in 0.45s
+....................... [100%]
+23 passed in 0.53s
+Fresh ZIP extraction; offline tests, no API calls.

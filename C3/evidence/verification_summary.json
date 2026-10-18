@@ -14,8 +14,8 @@
   "repository_visibility": "PRIVATE",
   "repository_folder": "C3",
   "branch": "main",
-  "testing_cost_estimate": 0.00874825,
-  "cost_scope": "Additional OpenAI work for both assignments, including failed-request reservation; earlier DeepSeek costs separate.",
+  "testing_cost_estimate": 0.0153436,
+  "cost_scope": "Combined OpenAI delivery testing and explicit C3-to-C4 inheritance audit across both assignments; conservative estimate, not an invoice. Earlier DeepSeek costs separate.",
   "required_tools_requested_by_model": [
     "record_customer_interest",
     "record_feedback"
@@ -25,5 +25,8 @@
   "video_duration_seconds": 31.28,
   "full_video_decode_passed": true,
   "reflection_live_tested": true,
-  "reflection_evidence": "evidence/openai_reflection.json"
+  "reflection_evidence": "evidence/openai_reflection.json",
+  "structural_and_evidence_checks_passed": 46,
+  "initial_delivery_openai_estimate": 0.00874825,
+  "extension_audit_openai_estimate": 0.00659535
 }

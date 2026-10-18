@@ -171,7 +171,7 @@
     },
     {
       "name": "record_interest",
-      "description": "Save follow-up only when customer gives contact details and consent.",
+      "description": "Validate consent, then reuse C3 record_customer_interest for follow-up logging.",
       "inputSchema": {
         "type": "object",
         "properties": {
@@ -221,7 +221,7 @@
     },
     {
       "name": "log_unanswered",
-      "description": "Log a question when the requested fact is unpublished.",
+      "description": "Record feedback or a question whose answer is unpublished; reuses C3 record_feedback.",
       "inputSchema": {
         "type": "object",
         "properties": {

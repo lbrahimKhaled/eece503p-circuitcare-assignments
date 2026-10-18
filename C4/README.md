@@ -4,6 +4,23 @@
 
 This independent C4 submission extends the CircuitCare business with a **manual ReAct loop inside LangGraph StateGraph**, OpenAI GPT-6 Luna, and a Gradio persona-switching workbench. Google ADK is not used. LangGraph is explicitly one of the frameworks permitted by the handout.
 
+## How C4 extends the actual C3 project
+
+`agent.py` is retained byte-for-byte from C3, together with `history.py`, `model_client.py`, and all three `me/` files. C4 imports `load_business_context` and `route_message` from that module, so its graph receives both original business formats and the original three-way classification before deciding an action. Both original functions `record_customer_interest(email,name,message)` and `record_feedback(question)` remain in this retained module and are actually called by C4’s adapters:
+
+| C3 foundation | C4 extension |
+|---|---|
+| Original PDF + TXT context loader | Same loader supplies every ReAct conversation |
+| General / lead / feedback router | Same router classifies each request before the graph runs; result includes the route |
+| `record_customer_interest(email,name,message)` | `record_interest` adds an explicit consent field, then calls the unchanged C3 function |
+| `record_feedback(question)` | `log_unanswered` calls the unchanged C3 function for feedback or missing business facts |
+| One concierge and native tool-call loop | Two configured personas and a manually programmed LangGraph decision/action/observation loop |
+| Published business information | Additional catalogue lookup, symptom guidance, and labour-credit calculator |
+
+C4 is self-contained and can run without a neighbouring C3 folder. The original C3 native-loop class remains available in `agent.py`; `app.py` uses the new `ReActAgent`. The inherited C3 functions still print record identifiers and write the same local lead/feedback JSONL record format. Current live extension evidence and dedicated regression tests verify reuse rather than only sharing a business name.
+
+The C4 handout specifies behavior, experiments, framework, and reflection but gives no mandatory directory tree. This folder preserves C3’s named baseline files and adds the advanced implementation. See the root `SUBMISSION_CHECKLIST.md` and run `python verify_submission.py` from the repository root to check both folders without API calls.
+
 ## Goal, audience, tools, limits
 
 The assistant helps non-expert laptop customers understand published services, obtain illustrative labour estimates, safely triage symptoms, and request human follow-up. Tools are `get_service`, `triage_device`, `estimate_repair`, `record_interest`, and `log_unanswered`. The allowlist and JSON schemas validate action arguments. Follow-up saving requires valid contact fields and a true consent flag. It cannot inspect a device, make a final diagnosis, quote unpublished parts, query stock, guarantee a deadline, book a repair, or charge anyone. All business facts are fictional.
@@ -30,27 +47,28 @@ The dedicated instructions are separate from persona text, specify the input and
 
 Seven setups × three shared cases = 21 **real OpenAI** runs. The cases cover diagnostic-credit calculation, swollen-battery guidance, and unpublished brand-authorisation status. Contrasts cover personas, brief task-level reasoning summaries versus direct action selection, zero/few-shot examples, system/user-message instructions, a combined instructions/examples ablation, and a warmer expert configuration.
 
-The assignment's with/without Chain-of-Thought prompt comparison is implemented using brief public reasoning summaries of relevant evidence and action choice. Private chain-of-thought is never requested. The direct condition asks for no note; it nevertheless emitted one note in six decisions. The summary condition emitted six notes. These logs support a comparison of prompts and public explanations, not a claim about hidden cognition. The zero-shot condition removes all examples, including the inline instructions example; the working baseline keeps it. The ablation removes instructions and examples together, so it is not an isolated test of one sentence.
+The assignment's with/without Chain-of-Thought prompt comparison is implemented using brief public reasoning summaries of relevant evidence and action choice. Private chain-of-thought is never requested. The direct condition emitted 0 notes in 6 decisions, while the matched summary condition emitted 6 notes in 6 decisions. The direct condition also removes the note field from its protocol templates. These logs support a comparison of prompts and public explanations, not a claim about hidden cognition. The zero-shot condition removes all examples, including the inline instructions example; the working baseline keeps it. The ablation removes instructions and examples together, so it is not an isolated test of one sentence.
 
 | Setup | Checks | Calls | Public rationale notes | Output tokens |
 |---|---:|---:|---:|---:|
-| friendly_full | 12/12 | 6 | 6 | 425 |
-| expert_full | 12/12 | 6 | 6 | 433 |
-| expert_no_planning | 12/12 | 6 | 1 | 283 |
-| expert_zero_shot | 12/12 | 6 | 6 | 423 |
-| expert_user_instructions | 12/12 | 6 | 6 | 424 |
-| expert_without_instructions | 12/12 | 6 | 6 | 433 |
-| expert_warm_config | 12/12 | 6 | 6 | 431 |
+| friendly_full | 12/12 | 6 | 6 | 458 |
+| expert_full | 12/12 | 6 | 6 | 424 |
+| expert_no_planning | 12/12 | 6 | 0 | 275 |
+| expert_zero_shot | 12/12 | 6 | 6 | 473 |
+| expert_user_instructions | 12/12 | 7 | 7 | 479 |
+| expert_without_instructions | 12/12 | 6 | 6 | 444 |
+| expert_warm_config | 12/12 | 6 | 6 | 415 |
 
 All 84 functional checks passed. This is a small keyword/tool-based screen, not an instructor grade or complete measure of correctness, safety, or naturalness. Each condition has one sample per case. All seven configurations tied; no best model or persona is established. Public rationale counts and output tokens are reported separately from the functional score. See `reflection.md` and the notebook for all five reflection answers and the limitations.
 
 ## Files and demonstrations
 
-- `react_agent.ipynb`: complete implementation, executed evidence cells, comparisons, reflection.
+- `business_agent.ipynb`: main C4 notebook, preserving C3’s filename while adding the complete ReAct implementation, experiments, and reflection. `react_agent.ipynb` is an identical compatibility alias.
 - `react_agent.py`, `tools.py`: manual graph, personas, focused instructions, schemas, tool functions.
 - `experiments.py`: repeatable matrix and explicit scoring checks.
 - `evidence/experiments.json`, `experiment_scores.csv`: current OpenAI results with settings, usage, timing, actions, observations, replies, rationale counts.
-- `evidence/openai_browser.json`: real UI checks for $45 combined labour, Maya's consenting intake, refusal of consent, hazard triage, and cleared history on persona switch.
+- `evidence/c3_extension_live.json`: current live checks of the inherited general/lead/feedback routes, C3 lead saving, and C3 feedback logging.
+- `evidence/openai_browser.json`: earlier UI checks for $45 combined labour, Maya's consenting intake, refusal of consent, hazard triage, and cleared history on persona switch.
 - `app.py`, `interface.py`, `interface.css`: repair workbench, persona profile, public decision/tool cards, expandable full trace; local port 7861.
 - `evidence/deepseek_pro_matrix.json`, `flash_original.json`, and earlier retest files: historical provider/prompt versions, preserved without relabeling.
 

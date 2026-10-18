@@ -24,7 +24,11 @@ python run.py
 
 Paste the API key at the hidden terminal prompt and press Enter. The launcher opens the interface in the browser and keeps the key only for this process. C3 uses local port 7860, C4 uses 7861. Stop with Ctrl+C. Windows activation is `.venv\Scripts\activate`. Read the assignment README for notebook instructions and the optional private `.env` method.
 
-The default model is OpenAI GPT-6 Luna. Each app shares a $0.05 / 64-call process budget; restarting begins a new budget. Tests and saved notebook evidence do not make paid calls. Additional OpenAI delivery testing for both projects stayed below $0.01 using a $0.10 test ceiling; precise usage estimates and limitations are in each evidence folder. Earlier DeepSeek logs remain historical.
+The default model is OpenAI GPT-6 Luna. Each app shares a $0.05 / 64-call process budget; restarting begins a new budget. Tests and saved notebook evidence do not make paid calls. Combined OpenAI delivery testing and the explicit C3-to-C4 inheritance audit are conservatively estimated at $0.01534360 across both projects; precise usage estimates and limitations are in each evidence folder. Earlier DeepSeek logs remain historical.
+
+## Assignment compliance
+
+C4 now directly imports C3’s unchanged router, PDF/TXT loader, and original lead/feedback functions. It retains the C3 business files and main notebook filename, then adds the manual LangGraph extension. [Requirement-by-requirement checklist](SUBMISSION_CHECKLIST.md). Run `python verify_submission.py` from this repository root for structural and inheritance checks without API calls.
 
 ## Preview
 
